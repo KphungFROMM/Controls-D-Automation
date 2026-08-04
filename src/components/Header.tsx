@@ -49,8 +49,8 @@ export function Header() {
           <Image
             src="/branding/logo.png"
             alt={`${site.name} logo`}
-            width={420}
-            height={140}
+            width={1000}
+            height={271}
             className="h-16 w-auto sm:h-[4.5rem] lg:h-20"
             priority
           />

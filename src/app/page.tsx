@@ -56,7 +56,7 @@ export default function HomePage() {
             <p className="mt-3 max-w-xl text-base text-silver sm:text-lg">
               Reliable PLC, HMI, and SCADA development, updates, and migrations—built to keep production running.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="hero-actions mt-6 flex flex-wrap gap-3">
               <Link href="/contact" className="btn btn-primary">
                 Request a consultation
               </Link>
@@ -236,7 +236,7 @@ export default function HomePage() {
             <p className="eyebrow">How we work</p>
             <h2 className="mt-3 text-3xl sm:text-4xl">A practical path from assessment to support</h2>
           </Reveal>
-          <div className="mt-8 grid gap-6 md:grid-cols-4">
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step, index) => (
               <Reveal key={step.title} delay={index * 70}>
                 <div>

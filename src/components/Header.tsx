@@ -57,7 +57,7 @@ export function Header() {
         </Link>
 
         <nav
-          className="hidden min-w-0 flex-1 items-center justify-center md:flex"
+          className="hidden min-w-0 flex-1 items-center justify-end lg:flex"
           aria-label="Primary"
         >
           <ul className="flex flex-wrap items-center justify-center gap-x-0.5 gap-y-1">
@@ -78,7 +78,7 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="ml-auto flex shrink-0 items-center gap-2 md:ml-0">
+        <div className="ml-auto flex shrink-0 items-center gap-2 lg:ml-2">
           <Link
             href="/contact"
             className="btn btn-primary hidden px-3 py-2 text-xs whitespace-nowrap sm:inline-flex lg:px-3.5 lg:py-2.5 lg:text-sm"
@@ -87,7 +87,7 @@ export function Header() {
           </Link>
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded border border-navy/20 px-3 py-2 text-sm font-semibold text-navy md:hidden"
+            className="inline-flex items-center justify-center rounded border border-navy/20 px-3 py-2 text-sm font-semibold text-navy lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((value) => !value)}
@@ -100,7 +100,7 @@ export function Header() {
       {open ? (
         <div
           id="mobile-nav"
-          className="max-h-[calc(100vh-8rem)] overflow-y-auto border-t border-silver/60 bg-white md:hidden"
+          className="max-h-[calc(100vh-8rem)] overflow-y-auto border-t border-silver/60 bg-white lg:hidden"
         >
           <nav className="container flex flex-col py-2" aria-label="Mobile">
             {links.map((link) => (

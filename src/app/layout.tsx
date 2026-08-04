@@ -1,9 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Source_Sans_3 } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { site } from "@/lib/site";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0b1f3a",
+};
 
 const display = Space_Grotesk({
   variable: "--font-display",
@@ -29,7 +35,7 @@ export const metadata: Metadata = {
     images: [{ url: "/branding/logo.png", width: 1200, height: 630, alt: site.name }],
     type: "website",
   },
-  metadataBase: new URL("https://controlsdautomation.example"),
+  metadataBase: new URL("https://controls-d-automation.vercel.app"),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

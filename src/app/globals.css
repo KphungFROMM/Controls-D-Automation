@@ -143,8 +143,23 @@ a {
 }
 
 .container {
-  width: min(1120px, calc(100% - 2.5rem));
+  width: min(100% - 1.5rem, 92rem);
   margin-inline: auto;
+  padding-inline: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: min(100% - 2.5rem, 92rem);
+    padding-inline: 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    width: min(100% - 4rem, 92rem);
+    padding-inline: 1.25rem;
+  }
 }
 
 .eyebrow {
@@ -260,6 +275,14 @@ a {
 
 @media (max-width: 860px) {
   .section {
-    padding: 3.5rem 0;
+    padding: 3rem 0;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 12rem;
   }
 }

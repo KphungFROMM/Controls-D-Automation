@@ -24,7 +24,11 @@ export function CtaBand({
             <h2 className="text-3xl text-white sm:text-4xl">{title}</h2>
             <p className="mt-3 text-base text-silver">{body}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href={primaryHref} className="btn bg-white text-navy hover:bg-mist">
+              <Link
+                href={primaryHref}
+                className="btn bg-white hover:bg-mist"
+                style={{ color: "var(--navy)" }}
+              >
                 {primaryLabel}
               </Link>
               {secondaryHref && secondaryLabel ? (

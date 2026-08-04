@@ -45,13 +45,17 @@ export function Header() {
       </div>
 
       <div className="site-wrap flex items-center gap-2 py-2.5 md:gap-3 lg:py-3">
-        <Link href="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)}>
+        <Link
+          href="/"
+          className="flex shrink-0 items-center bg-transparent"
+          onClick={() => setOpen(false)}
+        >
           <Image
             src="/branding/logo.png"
             alt={`${site.name} logo`}
-            width={420}
-            height={140}
-            className="h-16 w-auto sm:h-[4.5rem] lg:h-20"
+            width={999}
+            height={271}
+            className="h-16 w-auto bg-transparent sm:h-[4.5rem] lg:h-20"
             priority
           />
         </Link>

@@ -35,7 +35,7 @@ npm start
 - `/about` About
 - `/contact` Contact form
 
-Contact details in `src/lib/site.ts` are placeholders — update phone, email, hours, and address there (and in the footer automatically).
+Contact details in `src/lib/site.ts` — update phone, email, hours, and service area there (and in the footer automatically).
 
 Logo lives at `public/branding/logo.png` (copied from `Company Branding.png`).
 

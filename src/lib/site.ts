@@ -5,12 +5,10 @@ export const site = {
   description:
     "Controls D Automation delivers PLC, HMI, and SCADA development, updates, and migrations—with deep expertise in Rockwell Automation, GE, and Keyence.",
   contact: {
-    phone: "(555) 010-2400",
+    phone: "(484) 951-4997",
     email: "derick.montes@controlsdautomation.com",
     hours: "Mon–Fri, 8:00 AM – 5:00 PM",
     location: "Serving industrial facilities nationwide",
-    addressLine1: "123 Industrial Way, Suite 200",
-    addressLine2: "Your City, ST 00000",
   },
   socialNote: "Prefer the contact form for the fastest response on project inquiries.",
 } as const;

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { industries } from "@content/industries";
 import { getProjectsByIndustry } from "@content/projects";
@@ -27,36 +28,48 @@ export default function IndustriesPage() {
             const related = getProjectsByIndustry(industry.slug);
             return (
               <Reveal key={industry.slug} delay={index * 50}>
-                <article className="h-full rounded-xl border border-silver/70 bg-white p-6">
-                  <h2 className="text-2xl">{industry.name}</h2>
-                  <p className="mt-3 text-muted">{industry.summary}</p>
-                  <ul className="mt-5 space-y-2">
-                    {industry.outcomes.map((outcome) => (
-                      <li key={outcome} className="text-sm text-navy">
-                        <span className="mr-2 text-royal">▸</span>
-                        {outcome}
-                      </li>
-                    ))}
-                  </ul>
-                  {related.length > 0 ? (
-                    <div className="mt-5 border-t border-mist pt-4">
-                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-steel">
-                        Related projects
-                      </p>
-                      <ul className="mt-2 space-y-1">
-                        {related.map((project) => (
-                          <li key={project.slug}>
-                            <Link
-                              href={`/projects/${project.slug}`}
-                              className="text-sm font-medium text-royal hover:underline"
-                            >
-                              {project.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : null}
+                <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-silver/70 bg-white">
+                  <div className="relative h-48 overflow-hidden sm:h-52">
+                    <Image
+                      src={industry.image}
+                      alt={industry.imageAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h2 className="text-2xl">{industry.name}</h2>
+                    <p className="mt-3 text-muted">{industry.summary}</p>
+                    <p className="mt-3 text-sm text-navy/80">{industry.focus}</p>
+                    <ul className="mt-5 space-y-2">
+                      {industry.outcomes.map((outcome) => (
+                        <li key={outcome} className="text-sm text-navy">
+                          <span className="mr-2 text-royal">▸</span>
+                          {outcome}
+                        </li>
+                      ))}
+                    </ul>
+                    {related.length > 0 ? (
+                      <div className="mt-auto border-t border-mist pt-4">
+                        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-steel">
+                          Related projects
+                        </p>
+                        <ul className="mt-2 space-y-1">
+                          {related.map((project) => (
+                            <li key={project.slug}>
+                              <Link
+                                href={`/projects/${project.slug}`}
+                                className="text-sm font-medium text-royal hover:underline"
+                              >
+                                {project.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+                  </div>
                 </article>
               </Reveal>
             );

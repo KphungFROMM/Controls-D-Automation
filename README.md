@@ -21,7 +21,8 @@ npm start
 ## Site pages
 
 - `/` Home
-- `/services` Services
+- `/services` Services listing
+- `/services/[slug]` Individual service detail (capabilities, challenges, process, FAQ, technologies, benefits)
 - `/platforms` Platforms
 - `/industries` Industries
 - `/partners` Partners
@@ -34,6 +35,13 @@ npm start
 Contact details in `src/lib/site.ts` are placeholders — update phone, email, hours, and address there (and in the footer automatically).
 
 Logo lives at `public/branding/logo.png` (copied from `Company Branding.png`).
+
+## How to add or update a service
+
+1. Open `content/services.ts`.
+2. Add or edit a service object with `slug`, `title`, `summary`, `outcomes`, plus detail fields: `capabilities`, `challenges`, `process`, `benefits`, `technologies`, `faqs`, and `relatedIndustries`.
+3. Industry slugs in `relatedIndustries` must match entries in `content/industries.ts`.
+4. The listing at `/services` and the detail page at `/services/[slug]` update automatically.
 
 ## How to add a project
 

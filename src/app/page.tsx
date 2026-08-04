@@ -122,13 +122,16 @@ export default function HomePage() {
               From greenfield applications to legacy migrations, Controls D Automation focuses on maintainable code, practical operator interfaces, and commissioning that respects production.
             </p>
           </Reveal>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service, index) => (
               <Reveal key={service.slug} delay={index * 80}>
-                <div className="h-full border-l-2 border-royal/70 pl-4">
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="block h-full border-l-2 border-royal/70 pl-4 transition-colors hover:border-royal"
+                >
                   <h3 className="text-xl">{service.title}</h3>
                   <p className="mt-2 text-sm text-muted">{service.summary}</p>
-                </div>
+                </Link>
               </Reveal>
             ))}
           </div>

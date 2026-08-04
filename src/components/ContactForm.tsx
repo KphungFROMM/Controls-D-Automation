@@ -31,7 +31,21 @@ export function ContactForm() {
     return "general";
   }, [searchParams]);
 
-  const [form, setForm] = useState<FormState>({ ...initial, interest: defaultInterest });
+  const servicePrefill = useMemo(() => {
+    const service = searchParams.get("service");
+    if (!service) return "";
+    const label = service
+      .split("-")
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(" ");
+    return `I'm interested in your ${label} service. `;
+  }, [searchParams]);
+
+  const [form, setForm] = useState<FormState>({
+    ...initial,
+    interest: defaultInterest,
+    message: servicePrefill,
+  });
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [serverMessage, setServerMessage] = useState("");

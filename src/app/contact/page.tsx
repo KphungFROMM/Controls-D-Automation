@@ -45,14 +45,8 @@ export default function ContactPage() {
                   <dd className="text-muted">{site.contact.hours}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-navy">Location</dt>
-                  <dd className="text-muted">
-                    {site.contact.addressLine1}
-                    <br />
-                    {site.contact.addressLine2}
-                    <br />
-                    {site.contact.location}
-                  </dd>
+                  <dt className="font-semibold text-navy">Service area</dt>
+                  <dd className="text-muted">{site.contact.location}</dd>
                 </div>
               </dl>
             </div>

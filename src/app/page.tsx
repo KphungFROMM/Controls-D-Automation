@@ -85,7 +85,7 @@ export default function HomePage() {
             </figure>
             <figure className="relative overflow-hidden rounded-lg border border-white/20 shadow-xl">
               <Image
-                src="/hero/plc-control-cabinet.png"
+                src="/hero/plc-control-cabinet.webp"
                 alt="Open electrical control cabinet with DIN-rail PLC modules, I/O cards, and wiring"
                 width={1000}
                 height={700}
@@ -97,7 +97,7 @@ export default function HomePage() {
             </figure>
             <figure className="relative overflow-hidden rounded-lg border border-white/20 shadow-xl">
               <Image
-                src="/hero/scada-process-screen.png"
+                src="/hero/scada-process-screen.webp"
                 alt="SCADA monitor displaying industrial process schematic with tanks, pumps, and live values"
                 width={1000}
                 height={700}

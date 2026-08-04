@@ -47,7 +47,7 @@ export default function PartnersPage() {
                 <p className="eyebrow">Current partners</p>
                 <h2 className="mt-3 text-3xl">Partner network</h2>
               </div>
-              <p className="text-sm text-muted">Placeholder slots ready for real logos and names.</p>
+              <p className="text-sm text-muted">Open partnership categories—reach out to collaborate.</p>
             </div>
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -55,7 +55,7 @@ export default function PartnersPage() {
               <Reveal key={partner.slug} delay={index * 60}>
                 <article className="flex h-full flex-col rounded-xl border border-dashed border-steel/55 bg-mist/40 p-5">
                   <div className="mb-6 flex h-20 items-center justify-center rounded-lg bg-white/80 text-sm font-semibold uppercase tracking-[0.14em] text-steel">
-                    Logo TBD
+                    Partner
                   </div>
                   <p className="text-xs font-semibold uppercase tracking-[0.12em] text-royal">
                     {partner.category}

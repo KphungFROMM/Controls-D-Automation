@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import type { Review } from "@content/reviews";
 
 type FormState = {
   name: string;
@@ -16,7 +17,11 @@ const initial: FormState = {
   comment: "",
 };
 
-export function ReviewForm({ onSubmitted }: { onSubmitted?: () => void }) {
+export function ReviewForm({
+  onSubmitted,
+}: {
+  onSubmitted?: (review: Review, average?: number) => void;
+}) {
   const [form, setForm] = useState<FormState>(initial);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -53,14 +58,18 @@ export function ReviewForm({ onSubmitted }: { onSubmitted?: () => void }) {
           rating: Number(form.rating),
         }),
       });
-      const data = (await response.json()) as { message?: string };
+      const data = (await response.json()) as {
+        message?: string;
+        review?: Review;
+        average?: number;
+      };
       if (!response.ok) {
         throw new Error(data.message || "Unable to submit review.");
       }
       setStatus("success");
       setServerMessage(data.message || "Thank you for your feedback.");
       setForm(initial);
-      onSubmitted?.();
+      if (data.review) onSubmitted?.(data.review, data.average);
     } catch (error) {
       setStatus("error");
       setServerMessage(

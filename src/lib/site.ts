@@ -5,13 +5,13 @@ export const site = {
     "Controls D Automation delivers PLC, HMI, and SCADA development, updates, and migrations—with deep expertise in Rockwell Automation, GE, and Keyence.",
   contact: {
     phone: "(555) 010-2400",
-    email: "hello@controlsdautomation.example",
-    hours: "Mon–Fri, 8:00 AM – 5:00 PM (placeholder)",
-    location: "Service area coming soon",
+    email: "hello@controlsdautomation.com",
+    hours: "Mon–Fri, 8:00 AM – 5:00 PM",
+    location: "Serving industrial facilities nationwide",
     addressLine1: "123 Industrial Way, Suite 200",
     addressLine2: "Your City, ST 00000",
   },
-  socialNote: "Contact details are placeholders until final business info is provided.",
+  socialNote: "Prefer the contact form for the fastest response on project inquiries.",
 } as const;
 
 export const navLinks = [

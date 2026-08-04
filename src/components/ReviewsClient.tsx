@@ -1,9 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import type { Review } from "@content/reviews";
 import { ReviewForm } from "./ReviewForm";
 import { StarRating } from "./StarRating";
+
+function averageOf(list: Review[]) {
+  if (list.length === 0) return 0;
+  return Math.round((list.reduce((sum, item) => sum + item.rating, 0) / list.length) * 10) / 10;
+}
 
 export function ReviewsClient({
   initialReviews,
@@ -15,20 +20,14 @@ export function ReviewsClient({
   const [items, setItems] = useState(initialReviews);
   const [average, setAverage] = useState(initialAverage);
 
-  const refresh = useCallback(async () => {
-    const response = await fetch("/api/reviews");
-    if (!response.ok) return;
-    const data = (await response.json()) as {
-      reviews: Review[];
-      average: number;
-    };
-    setItems(data.reviews);
-    setAverage(data.average);
+  const handleSubmitted = useCallback((review: Review, nextAverage?: number) => {
+    setItems((prev) => {
+      if (prev.some((item) => item.id === review.id)) return prev;
+      const next = [review, ...prev];
+      setAverage(typeof nextAverage === "number" ? nextAverage : averageOf(next));
+      return next;
+    });
   }, []);
-
-  useEffect(() => {
-    void refresh();
-  }, [refresh]);
 
   return (
     <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
@@ -66,7 +65,7 @@ export function ReviewsClient({
         </div>
       </div>
 
-      <ReviewForm onSubmitted={refresh} />
+      <ReviewForm onSubmitted={handleSubmitted} />
     </div>
   );
 }

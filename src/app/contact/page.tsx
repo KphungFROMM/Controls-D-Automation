@@ -16,7 +16,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Request a consultation"
-        lede="Tell us about your control system, timeline, and goals. Placeholder contact details are shown until final business information is provided."
+        lede="Tell us about your control system, timeline, and goals. Use the form below and we’ll follow up promptly."
       />
 
       <section className="section">

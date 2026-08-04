@@ -41,7 +41,7 @@ export default function AboutPage() {
               Controls D Automation exists to make industrial control systems clearer, more maintainable, and more reliable. We work across new development, targeted updates, and platform migrations—always with an eye on commissioning success and long-term supportability.
             </p>
             <p className="mt-4 text-muted">
-              Location and contact details on this site are placeholders for now. The engineering focus is not: practical PLC logic, operator-ready HMIs, and SCADA visibility that helps teams act before downtime grows.
+              Our focus is practical PLC logic, operator-ready HMIs, and SCADA visibility that helps teams act before downtime grows—whether the work is a new build, an update, or a platform migration.
             </p>
           </Reveal>
           <Reveal delay={100}>

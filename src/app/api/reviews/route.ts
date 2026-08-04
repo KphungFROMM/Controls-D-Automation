@@ -46,12 +46,14 @@ export async function POST(request: Request) {
   });
 
   const submitted = await readSubmittedReviews();
-  const all = getApprovedReviews(submitted);
+  const withoutDuplicate = submitted.filter((review) => review.id !== entry.id);
+  const all = getApprovedReviews([entry, ...withoutDuplicate]);
 
   return NextResponse.json({
     message: "Thank you — your review has been added.",
     review: entry,
     average: getAverageRating(all),
     count: all.length,
+    reviews: all,
   });
 }

@@ -9,10 +9,10 @@ export type Partner = {
 export const partners: Partner[] = [
   {
     slug: "panel-solutions-partner",
-    name: "Panel Solutions Partner",
+    name: "Panel Fabrication Ally",
     category: "Panel Shop",
     summary:
-      "Placeholder for a UL panel fabrication partner supporting design-to-build delivery.",
+      "Collaborating with UL-capable panel shops for design-to-build delivery alongside controls engineering.",
     status: "placeholder",
   },
   {
@@ -20,7 +20,7 @@ export const partners: Partner[] = [
     name: "OEM Machine Builder",
     category: "OEM",
     summary:
-      "Placeholder for an OEM collaboration on machine controls, HMI standards, and field support.",
+      "Partnering with OEMs on machine controls, HMI standards, and coordinated field support.",
     status: "placeholder",
   },
   {
@@ -28,7 +28,7 @@ export const partners: Partner[] = [
     name: "Visualization Software Partner",
     category: "Software",
     summary:
-      "Placeholder for a SCADA/HMI software partner enabling joint proposals and licensed deployments.",
+      "Working with SCADA/HMI software partners for joint proposals and scalable visualization deployments.",
     status: "placeholder",
   },
   {
@@ -36,7 +36,7 @@ export const partners: Partner[] = [
     name: "Field Services Ally",
     category: "Field Services",
     summary:
-      "Placeholder for a regional field partner that extends commissioning and emergency coverage.",
+      "Extending commissioning and emergency coverage through trusted regional field partners.",
     status: "placeholder",
   },
 ];

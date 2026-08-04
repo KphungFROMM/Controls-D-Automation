@@ -222,7 +222,7 @@ export default function HomePage() {
                     {partner.category}
                   </p>
                   <p className="mt-2 font-semibold text-navy">{partner.name}</p>
-                  <p className="mt-1 text-xs text-muted">Partner placeholder</p>
+                  <p className="mt-1 text-xs text-muted">Open to partnership</p>
                 </div>
               ))}
             </div>

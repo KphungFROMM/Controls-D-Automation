@@ -1,6 +1,5 @@
-import { promises as fs } from "fs";
-import path from "path";
 import { NextResponse } from "next/server";
+import { persistJsonArray } from "@/lib/submissions";
 
 type ContactPayload = {
   name?: string;
@@ -42,21 +41,11 @@ export async function POST(request: Request) {
     receivedAt: new Date().toISOString(),
   };
 
-  const dataDir = path.join(process.cwd(), "data");
-  const filePath = path.join(dataDir, "contact-submissions.json");
-  await fs.mkdir(dataDir, { recursive: true });
-
-  let existing: unknown[] = [];
   try {
-    const raw = await fs.readFile(filePath, "utf8");
-    existing = JSON.parse(raw) as unknown[];
-    if (!Array.isArray(existing)) existing = [];
-  } catch {
-    existing = [];
+    await persistJsonArray("contact-submissions.json", entry);
+  } catch (error) {
+    console.error("Contact persistence failed:", error);
   }
-
-  existing.unshift(entry);
-  await fs.writeFile(filePath, JSON.stringify(existing, null, 2), "utf8");
 
   return NextResponse.json({
     message:

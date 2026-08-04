@@ -2,13 +2,15 @@
 
 import { useMemo, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
+import { services } from "@content/services";
 
 type FormState = {
   name: string;
   email: string;
   company: string;
   phone: string;
-  interest: string;
+  service: string;
+  timeline: string;
   message: string;
 };
 
@@ -17,40 +19,19 @@ const initial: FormState = {
   email: "",
   company: "",
   phone: "",
-  interest: "general",
+  service: "",
+  timeline: "",
   message: "",
 };
 
-export function ContactForm() {
+export function QuoteForm() {
   const searchParams = useSearchParams();
-  const defaultInterest = useMemo(() => {
-    const value = searchParams.get("interest");
-    if (
-      value === "partnership" ||
-      value === "project" ||
-      value === "support" ||
-      value === "quote"
-    ) {
-      return value;
-    }
-    return "general";
+  const defaultService = useMemo(() => {
+    const value = searchParams.get("service") ?? "";
+    return services.some((item) => item.slug === value) ? value : "";
   }, [searchParams]);
 
-  const servicePrefill = useMemo(() => {
-    const service = searchParams.get("service");
-    if (!service) return "";
-    const label = service
-      .split("-")
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-      .join(" ");
-    return `I'm interested in your ${label} service. `;
-  }, [searchParams]);
-
-  const [form, setForm] = useState<FormState>({
-    ...initial,
-    interest: defaultInterest,
-    message: servicePrefill,
-  });
+  const [form, setForm] = useState<FormState>({ ...initial, service: defaultService });
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [serverMessage, setServerMessage] = useState("");
@@ -61,6 +42,7 @@ export function ContactForm() {
     if (!values.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
       next.email = "Enter a valid email.";
     }
+    if (!values.service) next.service = "Select a service to scope.";
     if (!values.message.trim() || values.message.trim().length < 10) {
       next.message = "Please include at least a short project description.";
     }
@@ -76,19 +58,35 @@ export function ContactForm() {
     setStatus("submitting");
     setServerMessage("");
 
+    const serviceTitle =
+      services.find((item) => item.slug === form.service)?.title ?? form.service;
+    const composed = [
+      `Service requested: ${serviceTitle}`,
+      form.timeline ? `Target timeline: ${form.timeline}` : null,
+      "",
+      form.message.trim(),
+    ]
+      .filter((line) => line !== null)
+      .join("\n");
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          phone: form.phone,
+          interest: "quote",
+          message: composed,
+        }),
       });
       const data = (await response.json()) as { message?: string };
-      if (!response.ok) {
-        throw new Error(data.message || "Unable to send message.");
-      }
+      if (!response.ok) throw new Error(data.message || "Unable to send request.");
       setStatus("success");
-      setServerMessage(data.message || "Message received.");
-      setForm({ ...initial, interest: defaultInterest });
+      setServerMessage(data.message || "Request received.");
+      setForm({ ...initial, service: defaultService });
     } catch (error) {
       setStatus("error");
       setServerMessage(
@@ -112,11 +110,11 @@ export function ContactForm() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="form-label" htmlFor="name">
+          <label className="form-label" htmlFor="quote-name">
             Name
           </label>
           <input
-            id="name"
+            id="quote-name"
             className="input"
             value={form.name}
             onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
@@ -125,11 +123,11 @@ export function ContactForm() {
           {errors.name ? <p className="form-error">{errors.name}</p> : null}
         </div>
         <div>
-          <label className="form-label" htmlFor="email">
+          <label className="form-label" htmlFor="quote-email">
             Email
           </label>
           <input
-            id="email"
+            id="quote-email"
             type="email"
             className="input"
             value={form.email}
@@ -142,11 +140,11 @@ export function ContactForm() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="form-label" htmlFor="company">
+          <label className="form-label" htmlFor="quote-company">
             Company
           </label>
           <input
-            id="company"
+            id="quote-company"
             className="input"
             value={form.company}
             onChange={(e) => setForm((prev) => ({ ...prev, company: e.target.value }))}
@@ -154,11 +152,11 @@ export function ContactForm() {
           />
         </div>
         <div>
-          <label className="form-label" htmlFor="phone">
+          <label className="form-label" htmlFor="quote-phone">
             Phone
           </label>
           <input
-            id="phone"
+            id="quote-phone"
             className="input"
             value={form.phone}
             onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value }))}
@@ -167,39 +165,61 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div>
-        <label className="form-label" htmlFor="interest">
-          Interest
-        </label>
-        <select
-          id="interest"
-          className="select"
-          value={form.interest}
-          onChange={(e) => setForm((prev) => ({ ...prev, interest: e.target.value }))}
-        >
-          <option value="general">General inquiry</option>
-          <option value="project">Project / consultation</option>
-          <option value="quote">Request a quote</option>
-          <option value="partnership">Become a partner</option>
-          <option value="support">Support / updates</option>
-        </select>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label className="form-label" htmlFor="quote-service">
+            Service to scope
+          </label>
+          <select
+            id="quote-service"
+            className="select"
+            value={form.service}
+            onChange={(e) => setForm((prev) => ({ ...prev, service: e.target.value }))}
+          >
+            <option value="">Select a service</option>
+            {services.map((service) => (
+              <option key={service.slug} value={service.slug}>
+                {service.title}
+              </option>
+            ))}
+          </select>
+          {errors.service ? <p className="form-error">{errors.service}</p> : null}
+        </div>
+        <div>
+          <label className="form-label" htmlFor="quote-timeline">
+            Target timeline
+          </label>
+          <select
+            id="quote-timeline"
+            className="select"
+            value={form.timeline}
+            onChange={(e) => setForm((prev) => ({ ...prev, timeline: e.target.value }))}
+          >
+            <option value="">Not sure yet</option>
+            <option value="Urgent / this month">Urgent / this month</option>
+            <option value="1–3 months">1–3 months</option>
+            <option value="3–6 months">3–6 months</option>
+            <option value="Planning only">Planning only</option>
+          </select>
+        </div>
       </div>
 
       <div>
-        <label className="form-label" htmlFor="message">
-          How can we help?
+        <label className="form-label" htmlFor="quote-message">
+          Process, platforms, and constraints
         </label>
         <textarea
-          id="message"
+          id="quote-message"
           className="textarea"
           value={form.message}
           onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
+          placeholder="What’s running today, what needs to change, and any downtime windows we should know about."
         />
         {errors.message ? <p className="form-error">{errors.message}</p> : null}
       </div>
 
       <button type="submit" className="btn btn-primary" disabled={status === "submitting"}>
-        {status === "submitting" ? "Sending…" : "Send message"}
+        {status === "submitting" ? "Sending…" : "Request a quote"}
       </button>
     </form>
   );

@@ -33,7 +33,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     .map((industrySlug) => industries.find((item) => item.slug === industrySlug))
     .filter((item): item is (typeof industries)[number] => Boolean(item));
 
-  const contactHref = `/contact?interest=project&service=${service.slug}`;
+  const contactHref = `/quote?service=${service.slug}`;
 
   return (
     <>
@@ -172,7 +172,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               {related.map((industry, index) => (
                 <Reveal key={industry.slug} delay={index * 60}>
                   <Link
-                    href="/industries"
+                    href={`/industries/${industry.slug}`}
                     className="block h-full border-l-2 border-royal/60 pl-4 transition-colors hover:border-royal"
                   >
                     <h3 className="text-lg">{industry.name}</h3>

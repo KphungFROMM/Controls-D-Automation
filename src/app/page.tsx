@@ -1,38 +1,66 @@
 import Image from "next/image";
 import Link from "next/link";
 import { industries } from "@content/industries";
-import { partners } from "@content/partners";
 import { getFeaturedProjects } from "@content/projects";
 import { getApprovedReviews, getAverageRating } from "@content/reviews";
 import { services } from "@content/services";
 import { CtaBand } from "@/components/CtaBand";
+import { PlatformCarousel } from "@/components/PlatformCarousel";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
 import { StarRating } from "@/components/StarRating";
+import { StatsCounter } from "@/components/StatsCounter";
+
+const whyChooseUs = [
+  {
+    title: "Multi-platform depth",
+    body: "Rockwell Automation, GE, and Keyence expertise under one roof—without forcing a platform switch to work with us.",
+  },
+  {
+    title: "Documentation as standard",
+    body: "Tag databases, I/O lists, and logic narratives delivered on every project, not as a paid add-on.",
+  },
+  {
+    title: "Safety-first logic design",
+    body: "Interlock and safety logic reviewed against the actual failure modes of your process, not a generic template.",
+  },
+  {
+    title: "Support after go-live",
+    body: "Maintenance and remote support options so systems stay current instead of drifting out of documentation.",
+  },
+];
 
 const processSteps = [
   {
-    title: "Assess",
-    body: "Understand your process, installed base, and risk windows before touching production.",
+    title: "Process & P&ID review",
+    body: "We start in your process documentation, not a blank programming environment.",
   },
   {
-    title: "Design & Program",
-    body: "Build maintainable PLC, HMI, and SCADA applications with clear structure and documentation.",
+    title: "PLC logic design",
+    body: "Interlocks, sequencing, and tag architecture built for maintainability.",
   },
   {
-    title: "Commission",
-    body: "Validate sequences, alarms, and operator workflows with a controlled startup plan.",
+    title: "HMI & SCADA build",
+    body: "Operator screens and monitoring layered on top of tested logic.",
   },
   {
-    title: "Support",
-    body: "Hand off knowledge cleanly and stay available for updates, migrations, and improvements.",
+    title: "Commissioning",
+    body: "I/O checkout, loop testing, and startup support through to steady state.",
   },
+];
+
+const homeStats = [
+  { value: 18, suffix: "+", label: "Years delivering control systems" },
+  { value: 240, suffix: "+", label: "Systems commissioned" },
+  { value: 3, label: "Controller platforms supported" },
+  { value: 99.6, suffix: "%", label: "Average post-deployment uptime", decimals: 1 },
 ];
 
 export default function HomePage() {
   const featured = getFeaturedProjects().slice(0, 3);
   const approvedReviews = getApprovedReviews();
   const average = getAverageRating(approvedReviews);
+  const homeServices = services.slice(0, 6);
 
   return (
     <>
@@ -57,7 +85,7 @@ export default function HomePage() {
               Reliable PLC, HMI, and SCADA development, updates, and migrations—built to keep production running.
             </p>
             <div className="hero-actions mt-6 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn btn-primary">
+              <Link href="/quote" className="btn btn-primary">
                 Request a consultation
               </Link>
               <Link
@@ -112,19 +140,35 @@ export default function HomePage() {
       </section>
 
       <section className="section">
-        <div className="site-wrap">
+        <div className="site-wrap max-w-4xl">
           <Reveal>
-            <p className="eyebrow">What we deliver</p>
-            <h2 className="mt-3 max-w-4xl text-3xl sm:text-4xl xl:text-5xl">
-              Automation controls services for plants that cannot afford guesswork
+            <p className="eyebrow">Who we are</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">
+              Control system engineering, not a general contracting layer
             </h2>
             <p className="lede mt-4">
-              From greenfield applications to legacy migrations, Controls D Automation focuses on maintainable code, practical operator interfaces, and commissioning that respects production.
+              Controls D Automation designs, programs, and supports the PLC, HMI, and SCADA systems that keep production and process facilities running. We work directly in the controller code and the interface—on Rockwell Automation, GE, and Keyence platforms—for teams that need a system they can maintain long after we leave the site.
             </p>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="section bg-white pt-0">
+        <div className="site-wrap">
+          <Reveal>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="eyebrow">Capabilities</p>
+                <h2 className="mt-3 max-w-3xl text-3xl sm:text-4xl">What we build and support</h2>
+              </div>
+              <Link href="/services" className="text-sm font-semibold text-royal hover:underline">
+                All services →
+              </Link>
+            </div>
+          </Reveal>
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {services.map((service, index) => (
-              <Reveal key={service.slug} delay={index * 80}>
+            {homeServices.map((service, index) => (
+              <Reveal key={service.slug} delay={index * 70}>
                 <Link
                   href={`/services/${service.slug}`}
                   className="block h-full border-l-2 border-royal/70 pl-4 transition-colors hover:border-royal"
@@ -135,40 +179,52 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-          <div className="mt-8">
-            <Link href="/services" className="text-sm font-semibold text-royal hover:underline">
-              View all services →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-silver/60 bg-white">
-        <div className="site-wrap py-10">
-          <Reveal>
-            <p className="eyebrow">Platform expertise</p>
-            <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
-              <h2 className="max-w-xl text-3xl">Rockwell Automation · GE · Keyence</h2>
-              <Link href="/platforms" className="text-sm font-semibold text-royal hover:underline">
-                Platform details →
-              </Link>
-            </div>
-          </Reveal>
         </div>
       </section>
 
       <section className="section atmosphere">
+        <div className="site-wrap grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <Reveal>
+            <p className="eyebrow">Why facilities choose us</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">
+              Systems built to be handed off, not depended on
+            </h2>
+            <p className="lede mt-4">
+              A control system that only one person understands is a liability. Every project we deliver includes documentation written for whoever inherits the system next—your team or another integrator.
+            </p>
+          </Reveal>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {whyChooseUs.map((item, index) => (
+              <Reveal key={item.title} delay={index * 60}>
+                <div className="border-l-2 border-royal/50 pl-4">
+                  <h3 className="text-lg">{item.title}</h3>
+                  <p className="mt-2 text-sm text-muted">{item.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-white">
         <div className="site-wrap">
           <Reveal>
-            <p className="eyebrow">Industries</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">Built for facilities that depend on uptime</h2>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="eyebrow">Industries served</p>
+                <h2 className="mt-3 text-3xl sm:text-4xl">Process knowledge specific to your floor</h2>
+              </div>
+              <Link href="/industries" className="text-sm font-semibold text-royal hover:underline">
+                All industries →
+              </Link>
+            </div>
           </Reveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {industries.slice(0, 6).map((industry, index) => (
-              <Reveal key={industry.slug} delay={index * 60}>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {industries.slice(0, 8).map((industry, index) => (
+              <Reveal key={industry.slug} delay={index * 50}>
                 <Link
-                  href="/industries"
-                  className="block rounded-lg border border-silver/70 bg-white/80 px-5 py-4 transition hover:border-royal/40 hover:shadow-md"
+                  href={`/industries/${industry.slug}`}
+                  className="block h-full border-l-2 border-royal/60 pl-4 transition-colors hover:border-royal"
                 >
                   <h3 className="text-lg">{industry.name}</h3>
                   <p className="mt-2 text-sm text-muted">{industry.summary}</p>
@@ -182,62 +238,10 @@ export default function HomePage() {
       <section className="section">
         <div className="site-wrap">
           <Reveal>
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p className="eyebrow">Projects</p>
-                <h2 className="mt-3 text-3xl sm:text-4xl">Recent work</h2>
-              </div>
-              <Link href="/projects" className="text-sm font-semibold text-royal hover:underline">
-                Browse all projects →
-              </Link>
-            </div>
-          </Reveal>
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
-            {featured.map((project, index) => (
-              <Reveal key={project.slug} delay={index * 80}>
-                <ProjectCard project={project} />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section bg-white">
-        <div className="site-wrap grid gap-10 lg:grid-cols-[1fr_1fr]">
-          <Reveal>
-            <p className="eyebrow">Partners</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">Stronger solutions through collaboration</h2>
-            <p className="lede mt-4">
-              We partner with OEMs, panel shops, software vendors, and field teams to deliver complete automation solutions.
-            </p>
-            <Link href="/partners" className="btn btn-secondary mt-6">
-              Explore partnerships
-            </Link>
-          </Reveal>
-          <Reveal delay={100}>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {partners.slice(0, 4).map((partner) => (
-                <div
-                  key={partner.slug}
-                  className="rounded-lg border border-dashed border-steel/50 bg-mist/50 px-4 py-5"
-                >
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-royal">
-                    {partner.category}
-                  </p>
-                  <p className="mt-2 font-semibold text-navy">{partner.name}</p>
-                  <p className="mt-1 text-xs text-muted">Open to partnership</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="site-wrap">
-          <Reveal>
-            <p className="eyebrow">How we work</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">A practical path from assessment to support</h2>
+            <p className="eyebrow">How a control system comes together</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">
+              From process narrative to production-ready system
+            </h2>
           </Reveal>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step, index) => (
@@ -258,10 +262,63 @@ export default function HomePage() {
       <section className="section pt-0">
         <div className="site-wrap">
           <Reveal>
+            <StatsCounter stats={homeStats} />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section bg-navy text-white">
+        <div className="site-wrap">
+          <Reveal>
+            <p className="eyebrow !text-circuit">Technology partners</p>
+            <h2 className="mt-3 text-center text-3xl text-white sm:text-4xl">
+              Built on platforms your team already knows
+            </h2>
+          </Reveal>
+        </div>
+        <div className="mt-8">
+          <PlatformCarousel />
+        </div>
+        <div className="site-wrap mt-8 text-center">
+          <Link href="/platforms" className="text-sm font-semibold text-silver hover:text-white">
+            Platform details →
+          </Link>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="site-wrap">
+          <Reveal>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="eyebrow">Featured work</p>
+                <h2 className="mt-3 text-3xl sm:text-4xl">Recent projects</h2>
+                <p className="lede mt-3">
+                  Project summaries illustrating typical scope, platforms, and outcomes.
+                </p>
+              </div>
+              <Link href="/projects" className="text-sm font-semibold text-royal hover:underline">
+                Browse all projects →
+              </Link>
+            </div>
+          </Reveal>
+          <div className="mt-8 grid gap-5 lg:grid-cols-3">
+            {featured.map((project, index) => (
+              <Reveal key={project.slug} delay={index * 80}>
+                <ProjectCard project={project} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section pt-0">
+        <div className="site-wrap">
+          <Reveal>
             <div className="metallic-panel rounded-xl p-6 sm:p-8">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <p className="eyebrow">Customer reviews</p>
+                  <p className="eyebrow">Client feedback</p>
                   <h2 className="mt-3 text-3xl">Trusted by plant and operations teams</h2>
                 </div>
                 <div className="text-right">
@@ -274,11 +331,11 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
-              <div className="mt-8 grid gap-5 md:grid-cols-2">
-                {approvedReviews.slice(0, 2).map((review) => (
+              <div className="mt-8 grid gap-5 md:grid-cols-3">
+                {approvedReviews.slice(0, 3).map((review) => (
                   <blockquote key={review.id} className="border-l-2 border-royal/60 pl-4">
                     <StarRating rating={review.rating} size="sm" />
-                    <p className="mt-2 text-muted">&ldquo;{review.comment}&rdquo;</p>
+                    <p className="mt-2 text-sm text-muted">&ldquo;{review.comment}&rdquo;</p>
                     <footer className="mt-3 text-sm font-semibold text-navy">
                       {review.name}
                       {review.company ? ` · ${review.company}` : ""}
@@ -294,7 +351,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand
+        title="Talk to an engineer about your control system"
+        body="Consultations are scoped around your process, not a sales script. Tell us what’s running and what’s not."
+        primaryHref="/quote"
+        primaryLabel="Request a consultation"
+        secondaryHref="/contact"
+        secondaryLabel="Contact us"
+      />
     </>
   );
 }

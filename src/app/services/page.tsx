@@ -8,7 +8,7 @@ import { Reveal } from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "PLC, HMI, SCADA, system integration, and migration services from Controls D Automation.",
+    "PLC, HMI, SCADA, system integration, commissioning, diagnostics, maintenance, and migration services from Controls D Automation.",
 };
 
 export default function ServicesPage() {
@@ -17,7 +17,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="PLC, HMI, and SCADA services that protect uptime"
-        lede="Whether you need a new application, multi-vendor integration, a focused update, or a full platform migration, we deliver maintainable controls work with clear documentation and commissioning support."
+        lede="From new applications and multi-vendor integration to commissioning, diagnostics, maintenance, and platform migrations—we deliver maintainable controls work with clear documentation and startup support."
       />
 
       <section className="section">

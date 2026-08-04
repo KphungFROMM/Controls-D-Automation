@@ -13,6 +13,9 @@ export function Footer() {
             {site.tagline}
           </p>
           <p className="mt-4 text-xs text-steel">{site.socialNote}</p>
+          <Link href="/quote" className="btn btn-primary mt-6 px-4 py-2 text-sm">
+            Request a quote
+          </Link>
         </div>
 
         <div>
@@ -27,6 +30,11 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/quote" className="hover:text-white">
+                Request a quote
+              </Link>
+            </li>
           </ul>
         </div>
 

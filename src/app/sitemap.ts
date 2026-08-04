@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { industries } from "@content/industries";
 import { projects } from "@content/projects";
 import { services } from "@content/services";
 
@@ -13,8 +14,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/partners",
     "/projects",
     "/reviews",
+    "/faq",
     "/about",
     "/contact",
+    "/quote",
   ].map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),
@@ -25,10 +28,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
+  const industryRoutes = industries.map((industry) => ({
+    url: `${base}/industries/${industry.slug}`,
+    lastModified: new Date(),
+  }));
+
   const projectRoutes = projects.map((project) => ({
     url: `${base}/projects/${project.slug}`,
     lastModified: new Date(project.date),
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...projectRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...industryRoutes, ...projectRoutes];
 }

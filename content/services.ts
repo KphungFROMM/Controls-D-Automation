@@ -287,6 +287,155 @@ export const services: Service[] = [
     ],
     relatedIndustries: ["manufacturing", "water-wastewater", "general-industrial", "food-beverage"],
   },
+  {
+    slug: "commissioning",
+    title: "System Commissioning",
+    summary:
+      "Structured I/O checkout, loop testing, and startup support so new systems reach steady-state production on schedule.",
+    outcomes: [
+      "I/O checkout and verification",
+      "Loop tuning and functional testing",
+      "FAT / SAT execution",
+      "Startup and ramp-up support",
+    ],
+    capabilities: [
+      "I/O checkout and point-to-point verification",
+      "Loop tuning and functional testing",
+      "Factory Acceptance Testing (FAT) and Site Acceptance Testing (SAT)",
+      "Startup and ramp-up support",
+      "As-built documentation delivery",
+    ],
+    challenges: [
+      "Compressed startup schedules with no room for rework",
+      "Integrators leaving before full functional testing is complete",
+      "Punch lists that outlast the commissioning team",
+    ],
+    process: [
+      "Pre-commissioning checklist development",
+      "I/O and loop checkout",
+      "FAT / SAT execution",
+      "Startup support",
+      "Punch list closeout and documentation handover",
+    ],
+    benefits: [
+      "Fewer surprises during startup week",
+      "Documented FAT/SAT records for audit and handover",
+      "Faster ramp to rated production speed",
+    ],
+    technologies: ["Allen-Bradley", "GE", "Keyence"],
+    faqs: [
+      {
+        question: "Do you provide on-site commissioning support?",
+        answer:
+          "Yes. On-site commissioning and startup support is standard for new system deployments and major upgrades—I/O checkout through punch-list closeout, with as-built documentation at handover.",
+      },
+    ],
+    relatedIndustries: ["manufacturing", "packaging", "pharmaceutical", "automotive"],
+  },
+  {
+    slug: "diagnostics",
+    title: "Diagnostics & Troubleshooting",
+    summary:
+      "On-site and remote fault-finding for control systems that are down, drifting, or producing intermittent faults nobody can pin down.",
+    outcomes: [
+      "Emergency on-site troubleshooting",
+      "Remote diagnostics",
+      "Intermittent fault investigation",
+      "Root-cause reporting",
+    ],
+    capabilities: [
+      "Emergency on-site troubleshooting",
+      "Remote diagnostics via secure access",
+      "Intermittent fault investigation",
+      "Root-cause analysis and corrective action reporting",
+      "Network and communication fault diagnosis",
+    ],
+    challenges: [
+      "Intermittent faults that don't reproduce during scheduled visits",
+      "No historian or trend data during an investigation",
+      "Mixed-vendor networks with unclear ownership",
+    ],
+    process: [
+      "Initial remote triage",
+      "On-site or remote diagnostic session",
+      "Root-cause identification",
+      "Corrective action and verification",
+      "Written findings report",
+    ],
+    benefits: [
+      "Reduced downtime cost on active production issues",
+      "Root-cause findings, not just symptom fixes",
+      "A written record for repeat-fault prevention",
+    ],
+    technologies: ["Allen-Bradley", "GE", "Keyence", "Mixed-vendor networks"],
+    faqs: [
+      {
+        question: "Can issues be diagnosed remotely?",
+        answer:
+          "Where secure remote access is available, yes—many faults can be diagnosed and often resolved without an on-site visit. We set remote access up as part of onboarding when the engagement allows it.",
+      },
+    ],
+    relatedIndustries: [
+      "manufacturing",
+      "packaging",
+      "material-handling",
+      "general-industrial",
+    ],
+  },
+  {
+    slug: "maintenance",
+    title: "Maintenance & Technical Support",
+    summary:
+      "Ongoing service agreements covering preventive checks, remote support, and priority response for control systems already in production.",
+    outcomes: [
+      "Preventive maintenance visits",
+      "Priority remote and on-site response",
+      "Backup and documentation updates",
+      "Obsolescence planning",
+    ],
+    capabilities: [
+      "Scheduled preventive maintenance visits",
+      "Priority remote and on-site response under contract",
+      "Spare parts and obsolescence planning",
+      "Periodic backup and documentation updates",
+      "Operator refresher training",
+    ],
+    challenges: [
+      "No current backups of PLC or HMI programs",
+      "Support tied to a single person who is no longer reachable",
+      "No defined response time when something goes down",
+    ],
+    process: [
+      "Site assessment and documentation baseline",
+      "Maintenance plan and SLA definition",
+      "Scheduled visits and remote monitoring",
+      "Ongoing reporting and plan review",
+    ],
+    benefits: [
+      "Predictable support costs instead of reactive emergency billing",
+      "Faster response under a defined SLA",
+      "Control system documentation that stays current over time",
+    ],
+    technologies: ["Allen-Bradley", "GE", "Keyence"],
+    faqs: [
+      {
+        question: "Do you offer ongoing maintenance contracts?",
+        answer:
+          "Yes. Our maintenance and technical support plans cover scheduled preventive visits, priority response under a defined SLA, and periodic backup and documentation updates.",
+      },
+      {
+        question: "What happens if our PLC hardware becomes obsolete?",
+        answer:
+          "We track obsolescence risk as part of ongoing support and provide a migration plan before hardware becomes unsupportable—rather than after a failure forces the issue.",
+      },
+    ],
+    relatedIndustries: [
+      "manufacturing",
+      "water-wastewater",
+      "oil-gas",
+      "food-beverage",
+    ],
+  },
 ];
 
 export function getServiceBySlug(slug: string): Service | undefined {

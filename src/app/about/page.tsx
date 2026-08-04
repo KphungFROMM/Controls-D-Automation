@@ -38,7 +38,7 @@ export default function AboutPage() {
           <Reveal>
             <h2 className="text-3xl">Who we are</h2>
             <p className="mt-4 text-muted">
-              Controls D Automation exists to make industrial control systems clearer, more maintainable, and more reliable. We work across new development, targeted updates, and platform migrations—always with an eye on commissioning success and long-term supportability.
+              Controls D Automation exists to make industrial control systems clearer, more maintainable, and more reliable. Founded and led by {site.owner}, we work across new development, targeted updates, and platform migrations—always with an eye on commissioning success and long-term supportability.
             </p>
             <p className="mt-4 text-muted">
               Our focus is practical PLC logic, operator-ready HMIs, and SCADA visibility that helps teams act before downtime grows—whether the work is a new build, an update, or a platform migration.

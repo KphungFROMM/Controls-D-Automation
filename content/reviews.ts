@@ -22,7 +22,7 @@ export const reviews: Review[] = [
   {
     id: "r2",
     name: "Priya Nandakumar",
-    company: "Riverbend Utilities",
+    company: "Riverbend Treatment Plant",
     rating: 5,
     comment:
       "They understood our SCADA priorities quickly—alarms, trends, and remote visibility—without overcomplicating the system. Communication during commissioning was excellent.",

@@ -10,7 +10,7 @@ import { Reveal } from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Industries",
   description:
-    "Automation controls services for manufacturing, water/wastewater, packaging, food & beverage, oil & gas, and more.",
+    "Automation controls services for manufacturing, water/wastewater, packaging, food & beverage, automotive, and more.",
 };
 
 export default function IndustriesPage() {

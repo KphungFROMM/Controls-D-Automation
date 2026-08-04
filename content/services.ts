@@ -182,7 +182,7 @@ export const services: Service[] = [
     slug: "system-integration",
     title: "Industrial Automation Integration",
     summary:
-      "Tying together PLCs, HMIs, SCADA, drives, robotics, and third-party equipment into one system that behaves predictably as a whole.",
+      "Tying together PLCs, HMIs, SCADA, drives, vision, and third-party equipment into one system that behaves predictably as a whole.",
     outcomes: [
       "Cross-vendor equipment integration",
       "Industrial network architecture",
@@ -190,7 +190,7 @@ export const services: Service[] = [
       "MES / ERP data connectivity",
     ],
     capabilities: [
-      "Cross-vendor equipment integration (drives, robots, vision, weigh systems)",
+      "Cross-vendor equipment integration (drives, vision, weigh systems, OEM skids)",
       "Network architecture and industrial Ethernet design",
       "MES / ERP data integration",
       "Control panel design and build coordination",
@@ -432,7 +432,7 @@ export const services: Service[] = [
     relatedIndustries: [
       "manufacturing",
       "water-wastewater",
-      "oil-gas",
+      "packaging",
       "food-beverage",
     ],
   },

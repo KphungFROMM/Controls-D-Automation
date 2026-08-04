@@ -34,7 +34,7 @@ export const faqs: Faq[] = [
     question:
       "Do you work with equipment from vendors other than Allen-Bradley, GE, and Keyence?",
     answer:
-      "Yes. Those are our primary platforms, but system integration work regularly involves third-party drives, robotics, and vision systems from other vendors—wired into one coherent plant control system.",
+      "Yes. Those are our primary platforms, but system integration work regularly involves third-party drives, vision systems, and OEM equipment from other vendors—wired into one coherent plant control system.",
   },
   {
     category: "Supported Platforms",

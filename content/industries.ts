@@ -36,7 +36,7 @@ export const industries: Industry[] = [
       "Cell-level PLC control",
       "Line HMI and andon systems",
       "MES data integration",
-      "Robotic cell integration",
+      "Machine cell integration",
     ],
     services: ["plc", "hmi", "system-integration", "maintenance"],
     image:
@@ -49,7 +49,7 @@ export const industries: Industry[] = [
     summary:
       "Pump stations, treatment processes, and remote assets that demand reliable SCADA, alarming, and maintainable PLC programs.",
     overview:
-      "Treatment facilities answer to regulators as much as to operators. Our SCADA and reporting work is built around the data retention and reporting formats utilities are actually required to produce.",
+      "Treatment facilities answer to regulators as much as to operators. Our SCADA and reporting work is built around the data retention and reporting formats plants are actually required to produce.",
     focus:
       "Remote sites and continuous processes need clear alarming and maintainable logic that operators can trust after hours.",
     outcomes: [
@@ -111,7 +111,7 @@ export const industries: Industry[] = [
     focus:
       "Batch consistency and clean workflows matter as much as the PLC logic—operators need screens that match the process.",
     outcomes: [
-      "Process and utility control",
+      "Process and support-system control",
       "Recipe and sequence support",
       "HMI clarity for operators",
     ],
@@ -164,14 +164,14 @@ export const industries: Industry[] = [
     slug: "general-industrial",
     name: "General Industrial",
     summary:
-      "Custom machines, plant utilities, and mixed-platform sites that need a practical controls partner—not a one-size template.",
+      "Custom machines, plant support systems, and mixed-platform sites that need a practical controls partner—not a one-size template.",
     overview:
       "Continuous and hybrid process operations need control logic that holds setpoints reliably across upsets and startups. We design and tune process control systems around the actual process dynamics, not generic templates—and integrate cleanly across mixed vendor platforms.",
     focus:
       "Mixed platforms and one-off machines need a practical partner who can integrate cleanly without forcing a template.",
     outcomes: [
       "Custom machine automation",
-      "Utility and plant systems",
+      "Plant support systems",
       "Multi-vendor integration",
     ],
     challenges: [
@@ -188,64 +188,6 @@ export const industries: Industry[] = [
     image:
       "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Welder working with sparks in a general industrial fabrication shop",
-  },
-  {
-    slug: "oil-gas",
-    name: "Oil & Gas",
-    summary:
-      "Process control and remote monitoring for wellsite, midstream, and terminal operations.",
-    overview:
-      "Remote and hazardous-area operations need control systems that report reliably with minimal site visits. We design SCADA and remote monitoring architectures that hold up over unreliable communication links and long service intervals.",
-    focus:
-      "Remote assets and intermittent communications demand SCADA and alarming that operators can trust between planned visits.",
-    outcomes: [
-      "Remote monitoring and alarming",
-      "RTU and SCADA integration",
-      "Maintainable process control",
-    ],
-    challenges: [
-      "Remote sites with intermittent communications",
-      "Hazardous area classification requirements",
-      "Long intervals between planned site visits",
-    ],
-    systems: [
-      "RTU and SCADA polling architecture",
-      "Remote alarm and notification systems",
-      "Flow measurement integration",
-    ],
-    services: ["scada", "system-integration", "maintenance"],
-    image:
-      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Offshore oil platform structure against open water and sky",
-  },
-  {
-    slug: "energy-utilities",
-    name: "Energy & Utilities",
-    summary:
-      "Substation, generation, and distribution monitoring integrated with plant control systems.",
-    overview:
-      "Utility control rooms need consolidated visibility across generation and distribution assets that often run on different vendor platforms. We integrate that data into a single monitoring layer without disrupting existing protection schemes.",
-    focus:
-      "Multi-vendor monitoring has to consolidate cleanly—without touching protection schemes that keep the grid safe.",
-    outcomes: [
-      "Multi-vendor asset monitoring",
-      "Historian and reporting layers",
-      "Secure supervisory visibility",
-    ],
-    challenges: [
-      "Multi-vendor asset monitoring consolidation",
-      "Integration without disrupting protection schemes",
-      "Cybersecurity hardening requirements",
-    ],
-    systems: [
-      "Substation monitoring integration",
-      "Generation asset SCADA",
-      "Historian and reporting layers",
-    ],
-    services: ["scada", "system-integration"],
-    image:
-      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Electrical transmission towers against a dusk sky for energy and utilities",
   },
   {
     slug: "pharmaceutical",
@@ -280,30 +222,30 @@ export const industries: Industry[] = [
     slug: "automotive",
     name: "Automotive",
     summary:
-      "High-speed cell and line controls with robotics and vision system integration.",
+      "High-speed cell and line controls with vision system integration and reliable takt protection.",
     overview:
-      "Automotive lines run tight cycle times with heavy robotics and vision integration. We work inside existing cell architectures to add or upgrade control without disrupting takt time.",
+      "Automotive lines run tight cycle times with dense cell-level automation and vision inspection. We work inside existing cell architectures to add or upgrade control without disrupting takt time.",
     focus:
       "Cycle time and quality escapes leave little room for guesswork—integration has to fit the cell, not the other way around.",
     outcomes: [
-      "Robotic cell integration",
+      "Cell and line control upgrades",
       "Vision-guided process control",
       "Upgrade cutovers that protect takt",
     ],
     challenges: [
       "High-speed cycle time requirements",
-      "Deep robotics and vision system integration",
+      "Deep vision and multi-vendor cell integration",
       "Minimal tolerance for line stoppage during upgrades",
     ],
     systems: [
-      "Cell-level robotic integration",
+      "Cell-level PLC and safety coordination",
       "Vision-guided process control",
       "Line-wide andon and OEE systems",
     ],
     services: ["system-integration", "migrations", "commissioning"],
     image:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Automotive assembly line with robotic welding cells",
+      "https://images.unsplash.com/photo-1486262715619-67b85e0b08aa?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Automotive assembly line with workers and production tooling",
   },
 ];
 

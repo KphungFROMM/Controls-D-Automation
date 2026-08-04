@@ -72,8 +72,8 @@ export default function HomePage() {
           <div className="fade-up grid grid-cols-2 gap-3 sm:gap-4" style={{ animationDelay: "120ms" }}>
             <figure className="relative col-span-2 overflow-hidden rounded-lg border border-white/20 shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80"
-                alt="Industrial automation workstation representing HMI operator interfaces"
+                src="/hero/hmi-operator-panel.webp"
+                alt="Industrial HMI touchscreen showing operator process controls and machine status"
                 width={1600}
                 height={900}
                 className="h-44 w-full object-cover sm:h-56 lg:h-64 xl:h-72"
@@ -85,8 +85,8 @@ export default function HomePage() {
             </figure>
             <figure className="relative overflow-hidden rounded-lg border border-white/20 shadow-xl">
               <Image
-                src="https://images.unsplash.com/photo-1621905252472-943afaa20e20?auto=format&fit=crop&w=1000&q=80"
-                alt="Industrial electrical control panel and PLC hardware"
+                src="/hero/plc-control-cabinet.png"
+                alt="Open electrical control cabinet with DIN-rail PLC modules, I/O cards, and wiring"
                 width={1000}
                 height={700}
                 className="h-40 w-full object-cover sm:h-48 lg:h-52 xl:h-56"
@@ -97,8 +97,8 @@ export default function HomePage() {
             </figure>
             <figure className="relative overflow-hidden rounded-lg border border-white/20 shadow-xl">
               <Image
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80"
-                alt="SCADA-style monitoring dashboards and process data displays"
+                src="/hero/scada-process-screen.png"
+                alt="SCADA monitor displaying industrial process schematic with tanks, pumps, and live values"
                 width={1000}
                 height={700}
                 className="h-40 w-full object-cover sm:h-48 lg:h-52 xl:h-56"

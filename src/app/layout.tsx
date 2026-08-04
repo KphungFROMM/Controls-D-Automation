@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: site.name,
     description: site.description,
-    images: [{ url: "/branding/logo.png", width: 1200, height: 630, alt: site.name }],
+    images: [{ url: "/branding/logo.png", width: 999, height: 271, alt: site.name }],
     type: "website",
   },
   metadataBase: new URL("https://controls-d-automation.vercel.app"),

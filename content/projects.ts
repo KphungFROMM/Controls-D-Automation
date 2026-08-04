@@ -9,6 +9,9 @@ export type Project = {
   challenge: string;
   solution: string;
   results: string[];
+  process?: string[];
+  metrics?: { label: string; value: string }[];
+  services?: string[];
 };
 
 export const projects: Project[] = [
@@ -30,6 +33,19 @@ export const projects: Project[] = [
       "More consistent changeover steps on-screen",
       "Maintainable tag structure for future updates",
     ],
+    process: [
+      "Operator interviews and existing-screen audit",
+      "Navigation hierarchy and alarm philosophy redesign",
+      "FactoryTalk View rebuild with CompactLogix tag cleanup",
+      "Operator review cycle and shift-handover training",
+      "Go-live support across startup and first changeovers",
+    ],
+    metrics: [
+      { label: "Fault recovery time", value: "↓35%" },
+      { label: "Nuisance alarm rate", value: "↓40%" },
+      { label: "Changeover guidance screens", value: "12" },
+    ],
+    services: ["hmi", "plc"],
   },
   {
     slug: "water-plant-scada-visibility",
@@ -49,6 +65,19 @@ export const projects: Project[] = [
       "Trending that supports process decisions",
       "Clearer alarm priority for on-call response",
     ],
+    process: [
+      "Plant and remote-asset telemetry assessment",
+      "SCADA architecture and alarm priority design",
+      "Historian and overview graphic build",
+      "Phased cutover with existing PLC logic preserved",
+      "On-call staff training and post-go-live tuning",
+    ],
+    metrics: [
+      { label: "Assets on overview", value: "18" },
+      { label: "After-hours call-outs", value: "↓28%" },
+      { label: "Historian retention", value: "2 yrs" },
+    ],
+    services: ["scada", "plc"],
   },
   {
     slug: "legacy-plc5-migration",
@@ -68,6 +97,51 @@ export const projects: Project[] = [
       "Preserved proven process behavior",
       "Improved diagnostics for maintenance",
     ],
+    process: [
+      "Legacy logic audit and I/O verification",
+      "ControlLogix architecture and network design",
+      "Offline logic conversion and simulation",
+      "Staged hardware replacement with rollback checkpoints",
+      "Cutover validation and maintenance handover",
+    ],
+    metrics: [
+      { label: "Cutover window", value: "36 hrs" },
+      { label: "I/O points migrated", value: "240" },
+      { label: "Unplanned downtime", value: "0 hrs" },
+    ],
+    services: ["migrations", "commissioning"],
+  },
+  {
+    slug: "beverage-line-scada-consolidation",
+    title: "Plant-Wide SCADA Consolidation for a Multi-Line Beverage Facility",
+    summary:
+      "Realistic sample engagement: consolidated four independently monitored blending and filling lines into a single plant-wide SCADA system with unified historian and alarm management.",
+    date: "2025-02-14",
+    industry: "food-beverage",
+    platforms: ["Rockwell Automation"],
+    featured: true,
+    challenge:
+      "Each of the facility's four lines ran its own standalone HMI with no shared historian, making cross-line trend analysis and centralized alarm response impossible for the control room.",
+    solution:
+      "Designed and deployed a redundant FactoryTalk SE SCADA architecture polling all four lines, with a unified alarm philosophy and a consolidated historian for plant-wide reporting.",
+    results: [
+      "Centralized visibility across all four lines from a single control room",
+      "Alarm count reduced through rationalization",
+      "Consolidated historian now supports plant-wide OEE reporting",
+    ],
+    process: [
+      "Network and architecture assessment across all four lines",
+      "SCADA server and redundancy design",
+      "Alarm rationalization workshop with operations",
+      "Phased line-by-line cutover with zero unplanned downtime",
+      "Operator training and go-live support",
+    ],
+    metrics: [
+      { label: "Lines consolidated", value: "4" },
+      { label: "Unplanned downtime during cutover", value: "0 hrs" },
+      { label: "Alarm count", value: "−38%" },
+    ],
+    services: ["scada", "hmi"],
   },
 ];
 

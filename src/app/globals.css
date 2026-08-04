@@ -271,6 +271,33 @@ a {
   border-radius: 0.45rem;
 }
 
+@keyframes partnerScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.partner-track {
+  animation: partnerScroll 28s linear infinite;
+}
+
+.partner-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-track {
+    animation: none;
+  }
+
+  .hero-media {
+    animation: none;
+  }
+}
+
 @media (max-width: 860px) {
   .section {
     padding: 3rem 0;

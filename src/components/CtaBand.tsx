@@ -4,7 +4,7 @@ import { Reveal } from "./Reveal";
 export function CtaBand({
   title = "Ready to discuss your control system?",
   body = "Tell us about your PLC, HMI, or SCADA challenge—new development, updates, or a migration. We’ll help you plan the next step.",
-  primaryHref = "/contact",
+  primaryHref = "/quote",
   primaryLabel = "Request a consultation",
   secondaryHref,
   secondaryLabel,

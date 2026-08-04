@@ -8,7 +8,7 @@ import { Reveal } from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "PLC, HMI, and SCADA development, updates, and migrations from Controls D Automation.",
+    "PLC, HMI, SCADA, system integration, commissioning, diagnostics, maintenance, and migration services from Controls D Automation.",
 };
 
 export default function ServicesPage() {
@@ -17,7 +17,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="PLC, HMI, and SCADA services that protect uptime"
-        lede="Whether you need a new application, a focused update, or a full platform migration, we deliver maintainable controls work with clear documentation and commissioning support."
+        lede="From new applications and multi-vendor integration to commissioning, diagnostics, maintenance, and platform migrations—we deliver maintainable controls work with clear documentation and startup support."
       />
 
       <section className="section">
@@ -29,8 +29,21 @@ export default function ServicesPage() {
                 className="grid gap-6 rounded-xl border border-silver/70 bg-white p-6 md:grid-cols-[0.9fr_1.1fr] md:p-8"
               >
                 <div>
-                  <h2 className="text-3xl">{service.title}</h2>
+                  <h2 className="text-3xl">
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="transition-colors hover:text-royal"
+                    >
+                      {service.title}
+                    </Link>
+                  </h2>
                   <p className="mt-3 text-muted">{service.summary}</p>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="mt-5 inline-block text-sm font-semibold text-royal hover:underline"
+                  >
+                    View service details →
+                  </Link>
                 </div>
                 <ul className="space-y-3">
                   {service.outcomes.map((outcome) => (

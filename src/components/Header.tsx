@@ -80,10 +80,10 @@ export function Header() {
 
         <div className="ml-auto flex shrink-0 items-center gap-2 lg:ml-2">
           <Link
-            href="/contact"
+            href="/quote"
             className="btn btn-primary hidden px-3 py-2 text-xs whitespace-nowrap sm:inline-flex lg:px-3.5 lg:py-2.5 lg:text-sm"
           >
-            Request a consultation
+            Request a quote
           </Link>
           <button
             type="button"
@@ -116,11 +116,11 @@ export function Header() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href="/quote"
               className="btn btn-primary mt-4"
               onClick={() => setOpen(false)}
             >
-              Request a consultation
+              Request a quote
             </Link>
           </nav>
         </div>

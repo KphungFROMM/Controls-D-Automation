@@ -10,7 +10,7 @@ import { Reveal } from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Industries",
   description:
-    "Automation controls services for manufacturing, water/wastewater, packaging, food & beverage, and more.",
+    "Automation controls services for manufacturing, water/wastewater, packaging, food & beverage, oil & gas, and more.",
 };
 
 export default function IndustriesPage() {
@@ -29,7 +29,7 @@ export default function IndustriesPage() {
             return (
               <Reveal key={industry.slug} delay={index * 50}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-silver/70 bg-white">
-                  <div className="relative h-48 overflow-hidden sm:h-52">
+                  <Link href={`/industries/${industry.slug}`} className="relative h-48 overflow-hidden sm:h-52">
                     <Image
                       src={industry.image}
                       alt={industry.imageAlt}
@@ -37,9 +37,16 @@ export default function IndustriesPage() {
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                     />
-                  </div>
+                  </Link>
                   <div className="flex flex-1 flex-col p-6">
-                    <h2 className="text-2xl">{industry.name}</h2>
+                    <h2 className="text-2xl">
+                      <Link
+                        href={`/industries/${industry.slug}`}
+                        className="transition-colors hover:text-royal"
+                      >
+                        {industry.name}
+                      </Link>
+                    </h2>
                     <p className="mt-3 text-muted">{industry.summary}</p>
                     <p className="mt-3 text-sm text-navy/80">{industry.focus}</p>
                     <ul className="mt-5 space-y-2">
@@ -50,6 +57,12 @@ export default function IndustriesPage() {
                         </li>
                       ))}
                     </ul>
+                    <Link
+                      href={`/industries/${industry.slug}`}
+                      className="mt-5 inline-flex text-sm font-semibold text-royal hover:underline"
+                    >
+                      View industry details →
+                    </Link>
                     {related.length > 0 ? (
                       <div className="mt-auto border-t border-mist pt-4">
                         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-steel">
@@ -80,6 +93,7 @@ export default function IndustriesPage() {
       <CtaBand
         title="Talk about your facility"
         body="Tell us about your process, platforms, and goals. We’ll help define a controls approach that fits your operation."
+        primaryHref="/quote"
         primaryLabel="Talk about your facility"
       />
     </>

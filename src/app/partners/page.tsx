@@ -21,7 +21,7 @@ export default function PartnersPage() {
       />
 
       <section className="section">
-        <div className="container">
+        <div className="site-wrap">
           <Reveal>
             <p className="eyebrow">Why partner</p>
             <h2 className="mt-3 max-w-2xl text-3xl">Joint delivery without blurred accountability</h2>
@@ -40,7 +40,7 @@ export default function PartnersPage() {
       </section>
 
       <section className="section pt-0">
-        <div className="container">
+        <div className="site-wrap">
           <Reveal>
             <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
               <div>
@@ -79,7 +79,7 @@ export default function PartnersPage() {
       />
 
       <section className="section pt-0">
-        <div className="container text-center">
+        <div className="site-wrap text-center">
           <Reveal>
             <p className="text-muted">
               Prefer email first? Reach us at{" "}

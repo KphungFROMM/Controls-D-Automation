@@ -22,7 +22,7 @@ export default function IndustriesPage() {
       />
 
       <section className="section">
-        <div className="container grid gap-6 md:grid-cols-2">
+        <div className="site-wrap grid gap-6 md:grid-cols-2">
           {industries.map((industry, index) => {
             const related = getProjectsByIndustry(industry.slug);
             return (

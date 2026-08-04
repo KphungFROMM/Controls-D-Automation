@@ -20,7 +20,7 @@ export default function PlatformsPage() {
       />
 
       <section className="section">
-        <div className="container grid gap-6 lg:grid-cols-3">
+        <div className="site-wrap grid gap-6 lg:grid-cols-3">
           {platforms.map((platform, index) => (
             <Reveal key={platform.slug} delay={index * 80}>
               <article className="metallic-panel h-full rounded-xl p-6">
@@ -41,7 +41,7 @@ export default function PlatformsPage() {
       </section>
 
       <section className="section pt-0">
-        <div className="container">
+        <div className="site-wrap">
           <Reveal>
             <div className="rounded-xl border border-silver/70 bg-white px-6 py-8">
               <h2 className="text-2xl">Other platforms on request</h2>

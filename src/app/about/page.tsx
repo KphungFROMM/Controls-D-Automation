@@ -34,7 +34,7 @@ export default function AboutPage() {
       />
 
       <section className="section">
-        <div className="container grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="site-wrap grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal>
             <h2 className="text-3xl">Who we are</h2>
             <p className="mt-4 text-muted">
@@ -67,7 +67,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section pt-0">
-        <div className="container">
+        <div className="site-wrap">
           <Reveal>
             <p className="eyebrow">Why clients choose us</p>
             <h2 className="mt-3 text-3xl">Clarity over noise</h2>

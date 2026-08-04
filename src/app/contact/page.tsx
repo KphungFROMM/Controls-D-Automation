@@ -20,7 +20,7 @@ export default function ContactPage() {
       />
 
       <section className="section">
-        <div className="container grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="site-wrap grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal>
             <div className="space-y-5">
               <div>

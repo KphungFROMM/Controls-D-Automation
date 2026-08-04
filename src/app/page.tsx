@@ -48,7 +48,7 @@ export default function HomePage() {
           <div className="absolute inset-0 circuit-grid opacity-30" />
         </div>
 
-        <div className="container relative grid items-center gap-8 py-10 sm:py-12 lg:grid-cols-[1fr_1.05fr] lg:gap-12 xl:gap-16 lg:py-16">
+        <div className="site-wrap relative grid items-center gap-8 py-10 sm:py-12 lg:grid-cols-[1fr_1.05fr] lg:gap-12 xl:gap-16 lg:py-16">
           <div className="fade-up text-white">
             <h1 className="text-3xl !text-white sm:text-4xl lg:text-5xl xl:text-6xl">
               Controls D Automation
@@ -112,7 +112,7 @@ export default function HomePage() {
       </section>
 
       <section className="section">
-        <div className="container">
+        <div className="site-wrap">
           <Reveal>
             <p className="eyebrow">What we deliver</p>
             <h2 className="mt-3 max-w-4xl text-3xl sm:text-4xl xl:text-5xl">
@@ -141,7 +141,7 @@ export default function HomePage() {
       </section>
 
       <section className="border-y border-silver/60 bg-white">
-        <div className="container py-10">
+        <div className="site-wrap py-10">
           <Reveal>
             <p className="eyebrow">Platform expertise</p>
             <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
@@ -155,7 +155,7 @@ export default function HomePage() {
       </section>
 
       <section className="section atmosphere">
-        <div className="container">
+        <div className="site-wrap">
           <Reveal>
             <p className="eyebrow">Industries</p>
             <h2 className="mt-3 text-3xl sm:text-4xl">Built for facilities that depend on uptime</h2>
@@ -177,7 +177,7 @@ export default function HomePage() {
       </section>
 
       <section className="section">
-        <div className="container">
+        <div className="site-wrap">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
@@ -200,7 +200,7 @@ export default function HomePage() {
       </section>
 
       <section className="section bg-white">
-        <div className="container grid gap-10 lg:grid-cols-[1fr_1fr]">
+        <div className="site-wrap grid gap-10 lg:grid-cols-[1fr_1fr]">
           <Reveal>
             <p className="eyebrow">Partners</p>
             <h2 className="mt-3 text-3xl sm:text-4xl">Stronger solutions through collaboration</h2>
@@ -231,7 +231,7 @@ export default function HomePage() {
       </section>
 
       <section className="section">
-        <div className="container">
+        <div className="site-wrap">
           <Reveal>
             <p className="eyebrow">How we work</p>
             <h2 className="mt-3 text-3xl sm:text-4xl">A practical path from assessment to support</h2>
@@ -253,7 +253,7 @@ export default function HomePage() {
       </section>
 
       <section className="section pt-0">
-        <div className="container">
+        <div className="site-wrap">
           <Reveal>
             <div className="metallic-panel rounded-xl p-6 sm:p-8">
               <div className="flex flex-wrap items-center justify-between gap-4">

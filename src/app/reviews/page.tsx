@@ -27,7 +27,7 @@ export default async function ReviewsPage() {
       />
 
       <section className="section">
-        <div className="container">
+        <div className="site-wrap">
           <ReviewsClient initialReviews={approved} initialAverage={average} />
         </div>
       </section>

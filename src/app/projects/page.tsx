@@ -25,7 +25,7 @@ export default function ProjectsPage() {
       />
 
       <section className="section">
-        <div className="container">
+        <div className="site-wrap">
           <Reveal>
             <ProjectsFilter projects={sorted} />
           </Reveal>

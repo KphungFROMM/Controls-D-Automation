@@ -19,7 +19,7 @@ export function CtaBand({
   return (
     <section className="section pt-0">
       <Reveal>
-        <div className="container overflow-hidden rounded-xl bg-gradient-to-br from-navy via-[#14325c] to-royal px-6 py-10 text-white sm:px-10">
+        <div className="site-wrap overflow-hidden rounded-xl bg-gradient-to-br from-navy via-[#14325c] to-royal px-6 py-10 text-white sm:px-10">
           <div className="max-w-2xl">
             <h2 className="text-3xl text-white sm:text-4xl">{title}</h2>
             <p className="mt-3 text-base text-silver">{body}</p>

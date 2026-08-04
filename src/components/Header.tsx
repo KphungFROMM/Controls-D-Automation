@@ -31,7 +31,7 @@ export function Header() {
   return (
     <header className="nav-enter sticky top-0 z-50 border-b border-silver/60 bg-white/95 shadow-[0_1px_0_rgba(11,31,58,0.04)] backdrop-blur-md">
       <div className="border-b border-silver/40 bg-navy text-white">
-        <div className="container flex flex-wrap items-center justify-between gap-2 py-1.5 text-xs sm:text-sm">
+        <div className="site-wrap flex flex-wrap items-center justify-between gap-2 py-1.5 text-xs sm:text-sm">
           <p className="text-silver">PLC · HMI · SCADA · Rockwell · GE · Keyence</p>
           <div className="flex flex-wrap items-center gap-4 text-white/90">
             <a href={`tel:${site.contact.phone}`} className="hover:text-white">
@@ -44,7 +44,7 @@ export function Header() {
         </div>
       </div>
 
-      <div className="container flex items-center gap-2 py-2.5 md:gap-3 lg:py-3">
+      <div className="site-wrap flex items-center gap-2 py-2.5 md:gap-3 lg:py-3">
         <Link href="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)}>
           <Image
             src="/branding/logo.png"
@@ -102,7 +102,7 @@ export function Header() {
           id="mobile-nav"
           className="max-h-[calc(100vh-8rem)] overflow-y-auto border-t border-silver/60 bg-white lg:hidden"
         >
-          <nav className="container flex flex-col py-2" aria-label="Mobile">
+          <nav className="site-wrap flex flex-col py-2" aria-label="Mobile">
             {links.map((link) => (
               <Link
                 key={link.href}

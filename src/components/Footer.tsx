@@ -4,7 +4,7 @@ import { navLinks, site } from "@/lib/site";
 export function Footer() {
   return (
     <footer className="mt-auto border-t border-silver/70 bg-navy text-white">
-      <div className="container grid gap-10 py-12 md:grid-cols-[1.3fr_1fr_1fr]">
+      <div className="site-wrap grid gap-10 py-12 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
           <p className="font-[family-name:var(--font-display)] text-2xl tracking-tight">
             {site.name}
@@ -51,7 +51,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container flex flex-col gap-2 py-4 text-xs text-steel sm:flex-row sm:items-center sm:justify-between">
+        <div className="site-wrap flex flex-col gap-2 py-4 text-xs text-steel sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <p>PLC · HMI · SCADA · Rockwell · GE · Keyence</p>
         </div>

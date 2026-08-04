@@ -36,7 +36,7 @@ export default async function ProjectDetailPage({ params }: Props) {
     <>
       <section className="relative overflow-hidden border-b border-silver/50">
         <div className="absolute inset-0 atmosphere circuit-grid opacity-80" />
-        <div className="container relative py-14">
+        <div className="site-wrap relative py-14">
           <Reveal>
             <Link href="/projects" className="text-sm font-semibold text-royal hover:underline">
               ← All projects
@@ -68,7 +68,7 @@ export default async function ProjectDetailPage({ params }: Props) {
       </section>
 
       <section className="section">
-        <div className="container grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="site-wrap grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-8">
             <Reveal>
               <article>

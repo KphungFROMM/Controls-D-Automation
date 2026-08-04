@@ -21,7 +21,7 @@ export default function ServicesPage() {
       />
 
       <section className="section">
-        <div className="container space-y-8">
+        <div className="site-wrap space-y-8">
           {services.map((service, index) => (
             <Reveal key={service.slug} delay={index * 60}>
               <article
@@ -49,7 +49,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="section pt-0">
-        <div className="container">
+        <div className="site-wrap">
           <Reveal>
             <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl bg-mist px-6 py-6">
               <p className="max-w-xl text-muted">

@@ -48,12 +48,12 @@ export default function HomePage() {
           <div className="absolute inset-0 circuit-grid opacity-30" />
         </div>
 
-        <div className="container relative grid items-center gap-8 py-10 sm:py-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:py-14">
+        <div className="container relative grid items-center gap-8 py-10 sm:py-12 lg:grid-cols-[1fr_1.05fr] lg:gap-12 xl:gap-16 lg:py-16">
           <div className="fade-up text-white">
-            <h1 className="text-3xl !text-white sm:text-4xl lg:text-5xl">
+            <h1 className="text-3xl !text-white sm:text-4xl lg:text-5xl xl:text-6xl">
               Controls D Automation
             </h1>
-            <p className="mt-3 max-w-xl text-base text-silver sm:text-lg">
+            <p className="mt-3 max-w-2xl text-base text-silver sm:text-lg xl:text-xl">
               Reliable PLC, HMI, and SCADA development, updates, and migrations—built to keep production running.
             </p>
             <div className="hero-actions mt-6 flex flex-wrap gap-3">
@@ -72,11 +72,11 @@ export default function HomePage() {
           <div className="fade-up grid grid-cols-2 gap-3 sm:gap-4" style={{ animationDelay: "120ms" }}>
             <figure className="relative col-span-2 overflow-hidden rounded-lg border border-white/20 shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80"
+                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80"
                 alt="Industrial automation workstation representing HMI operator interfaces"
-                width={1200}
-                height={700}
-                className="h-40 w-full object-cover sm:h-48 lg:h-52"
+                width={1600}
+                height={900}
+                className="h-44 w-full object-cover sm:h-56 lg:h-64 xl:h-72"
                 priority
               />
               <figcaption className="absolute bottom-0 left-0 bg-navy/80 px-3 py-1.5 text-xs font-semibold tracking-wide text-white uppercase">
@@ -85,11 +85,11 @@ export default function HomePage() {
             </figure>
             <figure className="relative overflow-hidden rounded-lg border border-white/20 shadow-xl">
               <Image
-                src="https://images.unsplash.com/photo-1621905252472-943afaa20e20?auto=format&fit=crop&w=800&q=80"
+                src="https://images.unsplash.com/photo-1621905252472-943afaa20e20?auto=format&fit=crop&w=1000&q=80"
                 alt="Industrial electrical control panel and PLC hardware"
-                width={800}
-                height={600}
-                className="h-36 w-full object-cover sm:h-40"
+                width={1000}
+                height={700}
+                className="h-40 w-full object-cover sm:h-48 lg:h-52 xl:h-56"
               />
               <figcaption className="absolute bottom-0 left-0 bg-navy/80 px-3 py-1.5 text-xs font-semibold tracking-wide text-white uppercase">
                 PLC
@@ -97,11 +97,11 @@ export default function HomePage() {
             </figure>
             <figure className="relative overflow-hidden rounded-lg border border-white/20 shadow-xl">
               <Image
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80"
                 alt="SCADA-style monitoring dashboards and process data displays"
-                width={800}
-                height={600}
-                className="h-36 w-full object-cover sm:h-40"
+                width={1000}
+                height={700}
+                className="h-40 w-full object-cover sm:h-48 lg:h-52 xl:h-56"
               />
               <figcaption className="absolute bottom-0 left-0 bg-navy/80 px-3 py-1.5 text-xs font-semibold tracking-wide text-white uppercase">
                 SCADA
@@ -115,7 +115,7 @@ export default function HomePage() {
         <div className="container">
           <Reveal>
             <p className="eyebrow">What we deliver</p>
-            <h2 className="mt-3 max-w-2xl text-3xl sm:text-4xl">
+            <h2 className="mt-3 max-w-4xl text-3xl sm:text-4xl xl:text-5xl">
               Automation controls services for plants that cannot afford guesswork
             </h2>
             <p className="lede mt-4">

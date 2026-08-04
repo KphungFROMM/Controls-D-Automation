@@ -139,27 +139,15 @@ a {
 }
 
 .section {
-  padding: 5rem 0;
+  padding: clamp(3rem, 5vw, 5.5rem) 0;
 }
 
 .container {
-  width: min(100% - 1.5rem, 92rem);
+  width: 100%;
+  max-width: none;
   margin-inline: auto;
-  padding-inline: 0.75rem;
-}
-
-@media (min-width: 768px) {
-  .container {
-    width: min(100% - 2.5rem, 92rem);
-    padding-inline: 1rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    width: min(100% - 4rem, 92rem);
-    padding-inline: 1.25rem;
-  }
+  padding-inline: clamp(1rem, 4vw, 4.5rem);
+  box-sizing: border-box;
 }
 
 .eyebrow {
@@ -173,8 +161,18 @@ a {
 
 .lede {
   color: var(--muted);
-  font-size: 1.05rem;
-  max-width: 42rem;
+  font-size: clamp(1.05rem, 1.1vw, 1.25rem);
+  max-width: min(48rem, 100%);
+}
+
+@media (min-width: 1400px) {
+  h1 {
+    font-size: clamp(2.75rem, 3.2vw, 4rem);
+  }
+
+  h2 {
+    font-size: clamp(2rem, 2.4vw, 3rem);
+  }
 }
 
 .fade-up {

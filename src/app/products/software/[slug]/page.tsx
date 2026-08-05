@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   formatUsd,
+  getAccessBadge,
+  getLicenseModelLabel,
   getSkusForProduct,
   getSoftwareProduct,
   softwareProducts,
@@ -58,7 +60,7 @@ export default async function SoftwareProductPage({ params }: Props) {
                 className="h-9 w-9 object-contain"
               />
               <p className="eyebrow mt-0">
-                {product.isFree ? "Free" : "Trial available"} · {product.platform} · v{product.version}
+                {getAccessBadge(product)} · {product.platform} · v{product.version}
               </p>
             </div>
             <h1 className="mt-3 max-w-3xl text-4xl sm:text-5xl">{product.name}</h1>
@@ -68,9 +70,9 @@ export default async function SoftwareProductPage({ params }: Props) {
               <a href={product.downloadUrl} className="btn btn-primary">
                 {product.downloadLabel}
               </a>
-              {!product.isFree ? (
+              {product.pricingSkuIds.length > 0 ? (
                 <Link href={pricingHref} className="btn btn-secondary">
-                  {fromPrice != null ? `License from ${formatUsd(fromPrice)}` : "View pricing"}
+                  {fromPrice != null ? `Full from ${formatUsd(fromPrice)}` : "View pricing"}
                 </Link>
               ) : (
                 <Link href="/products/software" className="btn btn-secondary">
@@ -111,19 +113,15 @@ export default async function SoftwareProductPage({ params }: Props) {
                 </div>
                 <div>
                   <dt className="font-semibold text-navy">License model</dt>
-                  <dd className="text-muted">
-                    {product.isFree
-                      ? "Free commercial use"
-                      : "Trial download · Annual or perpetual Full license"}
-                  </dd>
+                  <dd className="text-muted">{getLicenseModelLabel(product)}</dd>
                 </div>
               </dl>
               <a href={product.downloadUrl} className="btn btn-primary mt-6 w-full">
                 {product.downloadLabel}
               </a>
-              {!product.isFree ? (
+              {product.pricingSkuIds.length > 0 ? (
                 <Link href={pricingHref} className="btn btn-secondary mt-3 w-full">
-                  Request a license
+                  {product.freeForever ? "Upgrade to Full" : "Request a license"}
                 </Link>
               ) : null}
             </aside>
@@ -159,14 +157,24 @@ export default async function SoftwareProductPage({ params }: Props) {
       ) : null}
 
       <CtaBand
-        title={product.isFree ? "Need the rest of the suite?" : "Tried it—ready for Full?"}
+        title={
+          product.isFree
+            ? "Need the rest of the suite?"
+            : product.freeForever
+              ? "Need Map, Sites, and reports?"
+              : "Tried it—ready for Full?"
+        }
         body={
           product.isFree
             ? "Pair BootP with ModbusTools, NetworkScan, PIDTuner, or KonnectOEE when your job needs more than commissioning."
-            : "Submit a license request with your Machine ID. We will send payment instructions and an offline key."
+            : product.freeForever
+              ? "NetworkScan Free covers scan and results forever. Upgrade to Full for Map, Sites, Report, and clean exports."
+              : "Submit a license request with your Machine ID. We will send payment instructions and an offline key."
         }
         primaryHref={product.isFree ? "/products/software" : pricingHref}
-        primaryLabel={product.isFree ? "Browse suite" : "Go to pricing"}
+        primaryLabel={
+          product.isFree ? "Browse suite" : product.freeForever ? "Upgrade to Full" : "Go to pricing"
+        }
         secondaryHref="/contact"
         secondaryLabel="Contact us"
       />

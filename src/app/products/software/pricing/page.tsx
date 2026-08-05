@@ -16,13 +16,13 @@ import { Reveal } from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Software Pricing",
   description:
-    "Konnect Software Suite pricing—download trials free, then request Annual or Perpetual Full licenses.",
+    "Konnect Software Suite pricing—BootP and NetworkScan Free forever, trials for other tools, then Annual or Perpetual Full licenses.",
 };
 
 const licenseSteps = [
   {
     title: "Download & install",
-    body: "Get the Windows Setup from the product page or GitHub releases. Paid products start in trial.",
+    body: "Get the Windows Setup from the product page or GitHub releases. BootP and NetworkScan Free are permanent; other paid products start in trial.",
   },
   {
     title: "Copy Machine ID",
@@ -30,7 +30,7 @@ const licenseSteps = [
   },
   {
     title: "Request a license",
-    body: "Select a SKU below and submit the form. We follow up with payment instructions.",
+    body: "Select a Full SKU below and submit the form. We follow up with payment instructions.",
   },
   {
     title: "Activate offline",
@@ -39,8 +39,10 @@ const licenseSteps = [
 ];
 
 export default function SoftwarePricingPage() {
-  const freeProduct = softwareProducts.find((product) => product.isFree);
-  const paidProducts = softwareProducts.filter((product) => !product.isFree);
+  const freeProducts = softwareProducts.filter(
+    (product) => product.isFree || product.freeForever,
+  );
+  const paidProducts = softwareProducts.filter((product) => product.pricingSkuIds.length > 0);
   const bundleAnnual = getPricingSku("desktop-bundle-annual");
   const bundlePerpetual = getPricingSku("desktop-bundle-perpetual");
 
@@ -49,40 +51,48 @@ export default function SoftwarePricingPage() {
       <PageHero
         eyebrow="Pricing"
         title="Simple licenses for plant PCs"
-        lede="Download every Konnect installer today. KonnectBootP is free. Paid tools include a trial—request an Annual or Perpetual Full license when you are ready."
+        lede="Download every Konnect installer today. BootP is free. NetworkScan Free covers scan and results forever—upgrade to Full for Map, Sites, and reports. Other tools include a trial before Full."
       />
 
-      {freeProduct ? (
-        <section className="section pt-0">
-          <div className="site-wrap">
-            <Reveal>
+      <section className="section pt-0">
+        <div className="site-wrap space-y-4">
+          {freeProducts.map((product, index) => (
+            <Reveal key={product.slug} delay={index * 50}>
               <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-success/30 bg-white px-6 py-5">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.12em] text-success">
-                    Free forever
+                    {product.isFree ? "Free forever" : "Free forever · Full upgrade available"}
                   </p>
-                  <h2 className="mt-2 text-2xl">{freeProduct.name}</h2>
-                  <p className="mt-1 text-sm text-muted">{freeProduct.tagline}</p>
+                  <h2 className="mt-2 text-2xl">{product.name}</h2>
+                  <p className="mt-1 max-w-2xl text-sm text-muted">{product.trialNotes}</p>
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  <a href={freeProduct.downloadUrl} className="btn btn-primary">
-                    {freeProduct.downloadLabel}
+                  <a href={product.downloadUrl} className="btn btn-primary">
+                    {product.downloadLabel}
                   </a>
-                  <Link href={`/products/software/${freeProduct.slug}`} className="btn btn-secondary">
+                  <Link href={`/products/software/${product.slug}`} className="btn btn-secondary">
                     Details
                   </Link>
+                  {product.pricingSkuIds.length > 0 ? (
+                    <Link
+                      href={`/products/software/pricing?sku=${product.pricingSkuIds[0]}#license-request`}
+                      className="btn btn-secondary"
+                    >
+                      Upgrade to Full
+                    </Link>
+                  ) : null}
                 </div>
               </div>
             </Reveal>
-          </div>
-        </section>
-      ) : null}
+          ))}
+        </div>
+      </section>
 
       <section className="section pt-0">
         <div className="site-wrap">
           <Reveal>
-            <p className="eyebrow">Individual products</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">Annual or perpetual Full licenses</h2>
+            <p className="eyebrow">Full licenses</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Annual or perpetual Full seats</h2>
           </Reveal>
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
             {paidProducts.map((product, index) => {
@@ -112,7 +122,7 @@ export default function SoftwarePricingPage() {
                       {annual ? (
                         <div className="rounded-lg bg-mist px-4 py-4">
                           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-royal">
-                            Annual
+                            Annual Full
                           </p>
                           <p className="mt-2 text-3xl font-semibold text-navy">
                             {formatUsd(annual.priceUsd)}
@@ -128,7 +138,7 @@ export default function SoftwarePricingPage() {
                       {perpetual ? (
                         <div className="rounded-lg border border-royal/25 bg-white px-4 py-4 shadow-sm">
                           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-royal">
-                            Perpetual
+                            Perpetual Full
                           </p>
                           <p className="mt-2 text-3xl font-semibold text-navy">
                             {formatUsd(perpetual.priceUsd)}
@@ -146,7 +156,7 @@ export default function SoftwarePricingPage() {
                       href={product.downloadUrl}
                       className="mt-4 inline-flex text-sm font-semibold text-royal hover:underline"
                     >
-                      Download trial →
+                      {product.freeForever ? "Download Free →" : "Download trial →"}
                     </a>
                   </article>
                 </Reveal>

@@ -21,7 +21,10 @@ export type SoftwareProduct = {
   summary: string;
   features: string[];
   trialNotes: string;
+  /** Fully free product with no paid SKUs (e.g. BootP). */
   isFree: boolean;
+  /** Permanent free tier with optional paid Full upgrade (e.g. NetworkScan). */
+  freeForever: boolean;
   platform: string;
   version: string;
   downloadUrl: string;
@@ -34,7 +37,7 @@ export const softwareSuite = {
   name: "Konnect Software Suite",
   tagline: "OT commissioning tools and on-prem OEE—built for plants, not the cloud.",
   description:
-    "Windows-first industrial software from Controls D Automation. Download free and trial installers today; purchase offline Full licenses when you are ready.",
+    "Windows-first industrial software from Controls D Automation. Download free installers and trials today; purchase offline Full licenses when you are ready.",
   valueProps: [
     {
       title: "Offline & on-prem",
@@ -45,8 +48,8 @@ export const softwareSuite = {
       body: "Self-contained Setup packages for Windows 10/11 x64. No separate .NET runtime for end users.",
     },
     {
-      title: "Trial before you buy",
-      body: "Paid tools ship with a trial. KonnectBootP is free for commercial commissioning use.",
+      title: "Try before you buy",
+      body: "BootP and NetworkScan Free are permanent. ModbusTools, PIDTuner, and OEE ship with trials before Full.",
     },
   ],
 } as const;
@@ -71,7 +74,7 @@ export const pricingSkus: PricingSku[] = [
   {
     id: "nsc-annual",
     productSlug: "network-scan",
-    label: "NetworkScan — Annual",
+    label: "NetworkScan Full — Annual",
     term: "annual",
     priceUsd: 129,
     fulfills: ["network-scan"],
@@ -79,7 +82,7 @@ export const pricingSkus: PricingSku[] = [
   {
     id: "nsc-perpetual",
     productSlug: "network-scan",
-    label: "NetworkScan — Perpetual",
+    label: "NetworkScan Full — Perpetual",
     term: "perpetual",
     priceUsd: 249,
     fulfills: ["network-scan"],
@@ -152,6 +155,7 @@ export const softwareProducts: SoftwareProduct[] = [
     ],
     trialNotes: "Full commercial access at no cost. Run as Administrator for UDP port 67.",
     isFree: true,
+    freeForever: true,
     platform: "Windows 10/11 x64",
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectBootP-Setup-1.0.0.exe`,
@@ -181,6 +185,7 @@ export const softwareProducts: SoftwareProduct[] = [
     ],
     trialNotes: "14-day trial included. Activate Full under Settings with a Machine ID license key.",
     isFree: false,
+    freeForever: false,
     platform: "Windows 10/11 x64",
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectModbusTools-Setup-1.0.0.exe`,
@@ -199,21 +204,23 @@ export const softwareProducts: SoftwareProduct[] = [
     shortName: "NetworkScan",
     tagline: "OT subnet discovery and site survey reporting",
     summary:
-      "Scan industrial subnets with OT-aware rates, enrich devices via CIP and common OT ports, and deliver branded PDF site surveys your customers can keep.",
+      "On-prem Windows subnet discovery for OT networks. Free forever for unlimited /24 scanning and results. Activate Full for Map, Sites, and branded PDF/CSV/HTML site survey deliverables.",
     features: [
-      "NIC/subnet scan with ARP + ICMP and OT-safe rate limits",
-      "Port probes including 44818, 2222, 502, 161, and common IT ports",
-      "CIP List Identity plus 35+ automation brand resolution",
+      "Permanent Free edition: full /24 scan and results—no host cap, no time limit",
+      "OT-safe ARP/ICMP discovery with industrial port probes (44818, 2222, 502, 161, and more)",
+      "CIP List Identity and 35+ automation brand resolution",
       "PLC / Drive / Switch / HMI result badges",
-      "QuestPDF site survey reports plus CSV/HTML export",
-      "Trial limited to /28 with watermarked PDFs",
+      "Full unlocks Map, multi-site workspace, Report preview, and PDF/CSV/HTML export",
+      "Offline Machine ID activation with KONNECT-NSC- keys",
     ],
-    trialNotes: "Trial limited to a /28 range with watermarked PDF output. Full unlocks wider scans and clean reports.",
+    trialNotes:
+      "Free forever includes unlimited subnet scan and results. Map, Sites, Report, and exports require a Full license—activate under Settings with your Machine ID key. No trial clock and no PDF watermarks.",
     isFree: false,
+    freeForever: true,
     platform: "Windows 10/11 x64",
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectNetworkScan-Setup-1.0.0.exe`,
-    downloadLabel: "Download trial",
+    downloadLabel: "Download Free",
     screenshots: [
       {
         src: "/software/screenshots/network-scan/network.png",
@@ -239,6 +246,7 @@ export const softwareProducts: SoftwareProduct[] = [
     ],
     trialNotes: "14-day trial included. Full license unlocks advanced control and MPC advisory features.",
     isFree: false,
+    freeForever: false,
     platform: "Windows 10/11 x64",
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectPIDTuner-Setup-1.0.0.exe`,
@@ -269,6 +277,7 @@ export const softwareProducts: SoftwareProduct[] = [
     trialNotes:
       "14-day trial with limited plant/line capacity. Installer requires a unique DB password (min 8 characters).",
     isFree: false,
+    freeForever: false,
     platform: "Windows PC / Server",
     version: "1.0.1",
     downloadUrl: `${RELEASE_BASE}/KonnectOEE-Setup-1.0.1.exe`,
@@ -303,7 +312,7 @@ export const desktopBundle = {
   slug: "desktop-bundle",
   name: "Desktop Commissioning Bundle",
   summary:
-    "ModbusTools, NetworkScan, and PIDTuner together—three Full licenses for the price of a focused toolkit.",
+    "ModbusTools Full, NetworkScan Full, and PIDTuner Full together—three Full licenses for the price of a focused toolkit. NetworkScan Free remains available separately for scan and results.",
   includes: ["modbus-tools", "network-scan", "pid-tuner"] as const,
   pricingSkuIds: ["desktop-bundle-annual", "desktop-bundle-perpetual"] as const,
   separateAnnualTotal: 99 + 129 + 299,
@@ -320,6 +329,20 @@ export function getPricingSku(id: string): PricingSku | undefined {
 
 export function getSkusForProduct(slug: string): PricingSku[] {
   return pricingSkus.filter((sku) => sku.productSlug === slug);
+}
+
+export function getAccessBadge(product: SoftwareProduct): string {
+  if (product.isFree) return "Free";
+  if (product.freeForever) return "Free + Full";
+  return "Trial available";
+}
+
+export function getLicenseModelLabel(product: SoftwareProduct): string {
+  if (product.isFree) return "Free commercial use";
+  if (product.freeForever) {
+    return "Free forever (scan + results) · Full unlocks Map, Sites, Report, and exports";
+  }
+  return "Trial download · Annual or perpetual Full license";
 }
 
 export function formatUsd(amount: number): string {

@@ -193,8 +193,8 @@ export default function HomePage() {
                   <h2 className="mt-3 text-3xl sm:text-4xl">{softwareSuite.name}</h2>
                   <p className="mt-3 max-w-2xl text-muted">{softwareSuite.tagline}</p>
                   <p className="mt-3 max-w-2xl text-sm text-navy/80">
-                    Download free and trial installers for BootP, ModbusTools, NetworkScan, PIDTuner,
-                    and on-prem OEE—then license Full seats when your plant is ready.
+                    Download BootP and NetworkScan Free forever, trial ModbusTools, PIDTuner, and
+                    on-prem OEE—then license Full seats when your plant is ready.
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link href="/products/software" className="btn btn-primary">
@@ -208,8 +208,8 @@ export default function HomePage() {
                 <div className="border-t border-silver/60 bg-mist px-6 py-6 lg:border-t-0 lg:border-l">
                   <ul className="space-y-3 text-sm text-navy">
                     <li className="border-l-2 border-royal/50 pl-3">KonnectBootP — free commissioning</li>
-                    <li className="border-l-2 border-royal/50 pl-3">ModbusTools & NetworkScan — OT bench tools</li>
-                    <li className="border-l-2 border-royal/50 pl-3">PIDTuner — Logix loop tuning</li>
+                    <li className="border-l-2 border-royal/50 pl-3">NetworkScan — Free scan + Full reports</li>
+                    <li className="border-l-2 border-royal/50 pl-3">ModbusTools & PIDTuner — OT bench tools</li>
                     <li className="border-l-2 border-royal/50 pl-3">KonnectOEE — on-prem plant visibility</li>
                   </ul>
                 </div>

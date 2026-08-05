@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { SoftwareProduct } from "@content/software";
-import { formatUsd, getSkusForProduct } from "@content/software";
+import { formatUsd, getAccessBadge, getSkusForProduct } from "@content/software";
 
 export function SoftwareProductCard({ product }: { product: SoftwareProduct }) {
   const skus = getSkusForProduct(product.slug);
@@ -9,6 +9,7 @@ export function SoftwareProductCard({ product }: { product: SoftwareProduct }) {
     ? Math.min(...skus.map((sku) => sku.priceUsd))
     : null;
   const thumb = product.screenshots[0];
+  const showPricingLink = product.pricingSkuIds.length > 0;
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border border-silver/70 bg-white">
@@ -27,7 +28,7 @@ export function SoftwareProductCard({ product }: { product: SoftwareProduct }) {
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-royal">
-              {product.isFree ? "Free" : "Trial available"}
+              {getAccessBadge(product)}
             </p>
             <h3 className="mt-2 text-2xl">{product.name}</h3>
           </div>
@@ -47,21 +48,22 @@ export function SoftwareProductCard({ product }: { product: SoftwareProduct }) {
           <Link href={`/products/software/${product.slug}`} className="btn btn-secondary">
             Details
           </Link>
-          {product.isFree ? (
+          {product.isFree || product.freeForever ? (
             <a
               href={product.downloadUrl}
               className="text-sm font-semibold text-royal hover:underline"
             >
-              Download free →
+              {product.freeForever && !product.isFree ? "Download Free →" : "Download free →"}
             </a>
-          ) : (
+          ) : null}
+          {showPricingLink ? (
             <Link
               href={`/products/software/pricing?sku=${product.pricingSkuIds[0] ?? ""}`}
               className="text-sm font-semibold text-royal hover:underline"
             >
-              {fromPrice != null ? `From ${formatUsd(fromPrice)}` : "View pricing"} →
+              {fromPrice != null ? `Full from ${formatUsd(fromPrice)}` : "View pricing"} →
             </Link>
-          )}
+          ) : null}
         </div>
       </div>
     </article>

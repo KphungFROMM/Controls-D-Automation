@@ -194,7 +194,8 @@ export default function HomePage() {
                   <p className="mt-3 max-w-2xl text-muted">{softwareSuite.tagline}</p>
                   <p className="mt-3 max-w-2xl text-sm text-navy/80">
                     Download BootP and NetworkScan Free forever, trial ModbusTools, PIDTuner, and
-                    on-prem OEE—then license Full seats when your plant is ready.
+                    on-prem OEE—then license Full seats when your plant is ready. Edge and Reports are
+                    coming soon.
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link href="/products/software" className="btn btn-primary">
@@ -211,6 +212,9 @@ export default function HomePage() {
                     <li className="border-l-2 border-royal/50 pl-3">NetworkScan — Free scan + Full reports</li>
                     <li className="border-l-2 border-royal/50 pl-3">ModbusTools & PIDTuner — OT bench tools</li>
                     <li className="border-l-2 border-royal/50 pl-3">KonnectOEE — on-prem plant visibility</li>
+                    <li className="border-l-2 border-royal/50 pl-3">
+                      KonnectEdge & Reports — <span className="font-semibold text-royal">coming soon</span>
+                    </li>
                   </ul>
                 </div>
               </div>

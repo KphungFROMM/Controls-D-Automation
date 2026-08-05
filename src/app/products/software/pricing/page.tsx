@@ -40,9 +40,11 @@ const licenseSteps = [
 
 export default function SoftwarePricingPage() {
   const freeProducts = softwareProducts.filter(
-    (product) => product.isFree || product.freeForever,
+    (product) => !product.comingSoon && (product.isFree || product.freeForever),
   );
-  const paidProducts = softwareProducts.filter((product) => product.pricingSkuIds.length > 0);
+  const paidProducts = softwareProducts.filter(
+    (product) => !product.comingSoon && product.pricingSkuIds.length > 0,
+  );
   const bundleAnnual = getPricingSku("desktop-bundle-annual");
   const bundlePerpetual = getPricingSku("desktop-bundle-perpetual");
 

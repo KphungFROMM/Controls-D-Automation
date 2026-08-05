@@ -44,6 +44,11 @@ export default function ProductsPage() {
                     {softwareProducts.map((product) => (
                       <li key={product.slug} className="border-l-2 border-royal/50 pl-3">
                         <span className="font-semibold">{product.name}</span>
+                        {product.comingSoon ? (
+                          <span className="ml-2 text-xs font-semibold uppercase tracking-[0.1em] text-royal">
+                            Coming soon
+                          </span>
+                        ) : null}
                         <span className="text-muted"> — {product.tagline}</span>
                       </li>
                     ))}
@@ -81,6 +86,11 @@ export default function ProductsPage() {
                         className="rounded-md border border-white/15 bg-white/5 px-3 py-2 font-medium text-white"
                       >
                         {product.shortName}
+                        {product.comingSoon ? (
+                          <span className="mt-0.5 block text-[10px] font-semibold uppercase tracking-[0.12em] text-silver/80">
+                            Coming soon
+                          </span>
+                        ) : null}
                       </li>
                     ))}
                   </ul>

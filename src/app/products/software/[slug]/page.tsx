@@ -60,24 +60,38 @@ export default async function SoftwareProductPage({ params }: Props) {
                 className="h-9 w-9 object-contain"
               />
               <p className="eyebrow mt-0">
-                {getAccessBadge(product)} · {product.platform} · v{product.version}
+                {getAccessBadge(product)} · {product.platform}
+                {product.comingSoon ? "" : ` · v${product.version}`}
               </p>
             </div>
             <h1 className="mt-3 max-w-3xl text-4xl sm:text-5xl">{product.name}</h1>
             <p className="mt-3 text-lg font-medium text-navy">{product.tagline}</p>
             <p className="lede mt-4">{product.summary}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href={product.downloadUrl} className="btn btn-primary">
-                {product.downloadLabel}
-              </a>
-              {product.pricingSkuIds.length > 0 ? (
-                <Link href={pricingHref} className="btn btn-secondary">
-                  {fromPrice != null ? `Full from ${formatUsd(fromPrice)}` : "View pricing"}
-                </Link>
+              {product.comingSoon ? (
+                <>
+                  <Link href="/contact" className="btn btn-primary">
+                    Ask about early access
+                  </Link>
+                  <Link href="/products/software" className="btn btn-secondary">
+                    Browse suite
+                  </Link>
+                </>
               ) : (
-                <Link href="/products/software" className="btn btn-secondary">
-                  Browse suite
-                </Link>
+                <>
+                  <a href={product.downloadUrl} className="btn btn-primary">
+                    {product.downloadLabel}
+                  </a>
+                  {product.pricingSkuIds.length > 0 ? (
+                    <Link href={pricingHref} className="btn btn-secondary">
+                      {fromPrice != null ? `Full from ${formatUsd(fromPrice)}` : "View pricing"}
+                    </Link>
+                  ) : (
+                    <Link href="/products/software" className="btn btn-secondary">
+                      Browse suite
+                    </Link>
+                  )}
+                </>
               )}
             </div>
           </Reveal>
@@ -116,14 +130,22 @@ export default async function SoftwareProductPage({ params }: Props) {
                   <dd className="text-muted">{getLicenseModelLabel(product)}</dd>
                 </div>
               </dl>
-              <a href={product.downloadUrl} className="btn btn-primary mt-6 w-full">
-                {product.downloadLabel}
-              </a>
-              {product.pricingSkuIds.length > 0 ? (
-                <Link href={pricingHref} className="btn btn-secondary mt-3 w-full">
-                  {product.freeForever ? "Upgrade to Full" : "Request a license"}
+              {product.comingSoon ? (
+                <Link href="/contact" className="btn btn-primary mt-6 w-full">
+                  Ask about early access
                 </Link>
-              ) : null}
+              ) : (
+                <>
+                  <a href={product.downloadUrl} className="btn btn-primary mt-6 w-full">
+                    {product.downloadLabel}
+                  </a>
+                  {product.pricingSkuIds.length > 0 ? (
+                    <Link href={pricingHref} className="btn btn-secondary mt-3 w-full">
+                      {product.freeForever ? "Upgrade to Full" : "Request a license"}
+                    </Link>
+                  ) : null}
+                </>
+              )}
             </aside>
           </Reveal>
         </div>
@@ -158,25 +180,37 @@ export default async function SoftwareProductPage({ params }: Props) {
 
       <CtaBand
         title={
-          product.isFree
-            ? "Need the rest of the suite?"
-            : product.freeForever
-              ? "Need Map, Sites, and reports?"
-              : "Tried it—ready for Full?"
+          product.comingSoon
+            ? "Want early access?"
+            : product.isFree
+              ? "Need the rest of the suite?"
+              : product.freeForever
+                ? "Need Map, Sites, and reports?"
+                : "Tried it—ready for Full?"
         }
         body={
-          product.isFree
-            ? "Pair BootP with ModbusTools, NetworkScan, PIDTuner, or KonnectOEE when your job needs more than commissioning."
-            : product.freeForever
-              ? "NetworkScan Free covers scan and results forever. Upgrade to Full for Map, Sites, Report, and clean exports."
-              : "Submit a license request with your Machine ID. We will send payment instructions and an offline key."
+          product.comingSoon
+            ? "Tell us about your plant use case. We will notify you when the public release is ready—or discuss a pilot."
+            : product.isFree
+              ? "Pair BootP with ModbusTools, NetworkScan, PIDTuner, or KonnectOEE when your job needs more than commissioning."
+              : product.freeForever
+                ? "NetworkScan Free covers scan and results forever. Upgrade to Full for Map, Sites, Report, and clean exports."
+                : "Submit a license request with your Machine ID. We will send payment instructions and an offline key."
         }
-        primaryHref={product.isFree ? "/products/software" : pricingHref}
+        primaryHref={
+          product.comingSoon || product.isFree ? (product.comingSoon ? "/contact" : "/products/software") : pricingHref
+        }
         primaryLabel={
-          product.isFree ? "Browse suite" : product.freeForever ? "Upgrade to Full" : "Go to pricing"
+          product.comingSoon
+            ? "Contact us"
+            : product.isFree
+              ? "Browse suite"
+              : product.freeForever
+                ? "Upgrade to Full"
+                : "Go to pricing"
         }
-        secondaryHref="/contact"
-        secondaryLabel="Contact us"
+        secondaryHref={product.comingSoon ? "/products/software" : "/contact"}
+        secondaryLabel={product.comingSoon ? "Browse suite" : "Contact us"}
       />
     </>
   );

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { softwareProducts, softwareSuite } from "@content/software";
+import {
+  getAvailableSoftwareProducts,
+  getComingSoonSoftwareProducts,
+  softwareSuite,
+} from "@content/software";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
@@ -13,6 +17,9 @@ export const metadata: Metadata = {
 };
 
 export default function SoftwareSuitePage() {
+  const available = getAvailableSoftwareProducts();
+  const comingSoon = getComingSoonSoftwareProducts();
+
   return (
     <>
       <PageHero
@@ -75,11 +82,11 @@ export default function SoftwareSuitePage() {
       <section className="section pt-0">
         <div className="site-wrap">
           <Reveal>
-            <p className="eyebrow">Products</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">Five tools ready for public release</h2>
+            <p className="eyebrow">Available now</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Tools ready for public release</h2>
           </Reveal>
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {softwareProducts.map((product, index) => (
+            {available.map((product, index) => (
               <Reveal key={product.slug} delay={index * 60}>
                 <SoftwareProductCard product={product} />
               </Reveal>
@@ -87,6 +94,28 @@ export default function SoftwareSuitePage() {
           </div>
         </div>
       </section>
+
+      {comingSoon.length > 0 ? (
+        <section className="section pt-0">
+          <div className="site-wrap">
+            <Reveal>
+              <p className="eyebrow">On the roadmap</p>
+              <h2 className="mt-3 text-3xl sm:text-4xl">Coming soon</h2>
+              <p className="mt-3 max-w-2xl text-muted">
+                Edge design and on-prem reporting are in active development. Preview the UIs below and
+                contact us if you want early access.
+              </p>
+            </Reveal>
+            <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {comingSoon.map((product, index) => (
+                <Reveal key={product.slug} delay={index * 60}>
+                  <SoftwareProductCard product={product} />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <CtaBand
         title="Ready to license a Full seat?"

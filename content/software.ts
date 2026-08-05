@@ -25,6 +25,8 @@ export type SoftwareProduct = {
   isFree: boolean;
   /** Permanent free tier with optional paid Full upgrade (e.g. NetworkScan). */
   freeForever: boolean;
+  /** Public teaser — not downloadable or purchasable yet. */
+  comingSoon: boolean;
   platform: string;
   version: string;
   downloadUrl: string;
@@ -35,9 +37,9 @@ export type SoftwareProduct = {
 
 export const softwareSuite = {
   name: "Konnect Software Suite",
-  tagline: "OT commissioning tools and on-prem OEE—built for plants, not the cloud.",
+  tagline: "OT commissioning tools and on-prem plant software—built for plants, not the cloud.",
   description:
-    "Windows-first industrial software from Controls D Automation. Download free installers and trials today; purchase offline Full licenses when you are ready.",
+    "Windows-first industrial software from Controls D Automation. Download free installers and trials today; purchase offline Full licenses when you are ready. KonnectEdge and KonnectReports are coming soon.",
   valueProps: [
     {
       title: "Offline & on-prem",
@@ -156,6 +158,7 @@ export const softwareProducts: SoftwareProduct[] = [
     trialNotes: "Full commercial access at no cost. Run as Administrator for UDP port 67.",
     isFree: true,
     freeForever: true,
+    comingSoon: false,
     platform: "Windows 10/11 x64",
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectBootP-Setup-1.0.0.exe`,
@@ -186,6 +189,7 @@ export const softwareProducts: SoftwareProduct[] = [
     trialNotes: "14-day trial included. Activate Full under Settings with a Machine ID license key.",
     isFree: false,
     freeForever: false,
+    comingSoon: false,
     platform: "Windows 10/11 x64",
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectModbusTools-Setup-1.0.0.exe`,
@@ -217,6 +221,7 @@ export const softwareProducts: SoftwareProduct[] = [
       "Free forever includes unlimited subnet scan and results. Map, Sites, Report, and exports require a Full license—activate under Settings with your Machine ID key. No trial clock and no PDF watermarks.",
     isFree: false,
     freeForever: true,
+    comingSoon: false,
     platform: "Windows 10/11 x64",
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectNetworkScan-Setup-1.0.0.exe`,
@@ -247,6 +252,7 @@ export const softwareProducts: SoftwareProduct[] = [
     trialNotes: "14-day trial included. Full license unlocks advanced control and MPC advisory features.",
     isFree: false,
     freeForever: false,
+    comingSoon: false,
     platform: "Windows 10/11 x64",
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectPIDTuner-Setup-1.0.0.exe`,
@@ -278,6 +284,7 @@ export const softwareProducts: SoftwareProduct[] = [
       "14-day trial with limited plant/line capacity. Installer requires a unique DB password (min 8 characters).",
     isFree: false,
     freeForever: false,
+    comingSoon: false,
     platform: "Windows PC / Server",
     version: "1.0.1",
     downloadUrl: `${RELEASE_BASE}/KonnectOEE-Setup-1.0.1.exe`,
@@ -306,6 +313,86 @@ export const softwareProducts: SoftwareProduct[] = [
     ],
     pricingSkuIds: ["oee-annual", "oee-perpetual"],
   },
+  {
+    slug: "edge",
+    name: "KonnectEdge",
+    shortName: "Edge",
+    tagline: "Native edge designer for gateways, tags, and plant HMIs",
+    summary:
+      "A free Windows WPF designer for authoring edge solutions—drivers, tags, optional HMI screens, and runtime packages you deploy to plant PCs. Runtime licensing is coming with the public release.",
+    features: [
+      "Native Windows Designer (no browser design server, no login)",
+      "Drivers, tags, scripts, alarms, and optional HMI canvas",
+      "Headless edge projects are first-class—screens optional",
+      "Export `.cedge-runtime` packages for plant PCs",
+      "Offline design without DriverHost; live preview when connected",
+      "Licensed native/web runtime on the plant PC (public release pending)",
+    ],
+    trialNotes:
+      "Coming soon for public download. Designer will ship free; plant runtime licenses will activate offline with KONNECT-EDG- keys.",
+    isFree: false,
+    freeForever: false,
+    comingSoon: true,
+    platform: "Windows 10/11 x64 (Designer) · Plant PC runtime",
+    version: "Preview",
+    downloadUrl: "",
+    downloadLabel: "Coming soon",
+    screenshots: [
+      {
+        src: "/software/screenshots/edge/designer-canvas.png",
+        alt: "KonnectEdge Designer canvas with Demo Project HMI layout",
+      },
+      {
+        src: "/software/screenshots/edge/designer.png",
+        alt: "KonnectEdge Designer project hub with recent projects",
+      },
+    ],
+    pricingSkuIds: [],
+  },
+  {
+    slug: "reports",
+    name: "KonnectReports",
+    shortName: "Reports",
+    tagline: "On-prem industrial reporting from PLC to scheduled PDF",
+    summary:
+      "Connect Rockwell, OPC UA, or Modbus sources, log tags to a historian, design report templates, and generate on-demand or scheduled PDFs—all on your plant network.",
+    features: [
+      "PLC / OPC UA / Modbus data sources with tag browse",
+      "Data logger groups into an on-prem historian",
+      "Trends, schedules, and portal report generation",
+      "WYSIWYG report designer with industrial template starters",
+      "Compliance-oriented audit and batch report patterns",
+      "Browser UI with role-based access on your network",
+    ],
+    trialNotes:
+      "Coming soon for public download and licensing. Contact us if you want early access for a pilot plant.",
+    isFree: false,
+    freeForever: false,
+    comingSoon: true,
+    platform: "Windows PC / Server · Browser UI",
+    version: "Preview",
+    downloadUrl: "",
+    downloadLabel: "Coming soon",
+    screenshots: [
+      {
+        src: "/software/screenshots/reports/portal.png",
+        alt: "KonnectReports portal with industrial report templates",
+      },
+      {
+        src: "/software/screenshots/reports/data-logger.png",
+        alt: "KonnectReports Data Logger workspace",
+      },
+      {
+        src: "/software/screenshots/reports/trends.png",
+        alt: "KonnectReports Trends view",
+      },
+      {
+        src: "/software/screenshots/reports/login.png",
+        alt: "KonnectReports sign-in screen",
+      },
+    ],
+    pricingSkuIds: [],
+  },
 ];
 
 export const desktopBundle = {
@@ -332,17 +419,27 @@ export function getSkusForProduct(slug: string): PricingSku[] {
 }
 
 export function getAccessBadge(product: SoftwareProduct): string {
+  if (product.comingSoon) return "Coming soon";
   if (product.isFree) return "Free";
   if (product.freeForever) return "Free + Full";
   return "Trial available";
 }
 
 export function getLicenseModelLabel(product: SoftwareProduct): string {
+  if (product.comingSoon) return "Public release pending · Contact us for early access";
   if (product.isFree) return "Free commercial use";
   if (product.freeForever) {
     return "Free forever (scan + results) · Full unlocks Map, Sites, Report, and exports";
   }
   return "Trial download · Annual or perpetual Full license";
+}
+
+export function getAvailableSoftwareProducts(): SoftwareProduct[] {
+  return softwareProducts.filter((product) => !product.comingSoon);
+}
+
+export function getComingSoonSoftwareProducts(): SoftwareProduct[] {
+  return softwareProducts.filter((product) => product.comingSoon);
 }
 
 export function formatUsd(amount: number): string {

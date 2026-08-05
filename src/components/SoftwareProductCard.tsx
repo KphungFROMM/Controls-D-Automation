@@ -9,7 +9,11 @@ export function SoftwareProductCard({ product }: { product: SoftwareProduct }) {
     ? Math.min(...skus.map((sku) => sku.priceUsd))
     : null;
   const thumb = product.screenshots[0];
-  const showPricingLink = product.pricingSkuIds.length > 0;
+  const showPricingLink = !product.comingSoon && product.pricingSkuIds.length > 0;
+  const showDownloadLink =
+    !product.comingSoon &&
+    Boolean(product.downloadUrl) &&
+    (product.isFree || product.freeForever);
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border border-silver/70 bg-white">
@@ -22,6 +26,11 @@ export function SoftwareProductCard({ product }: { product: SoftwareProduct }) {
             className="object-cover object-top"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
+          {product.comingSoon ? (
+            <span className="absolute left-3 top-3 rounded-md bg-navy/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
+              Coming soon
+            </span>
+          ) : null}
         </div>
       ) : null}
       <div className="flex flex-1 flex-col p-6">
@@ -48,13 +57,21 @@ export function SoftwareProductCard({ product }: { product: SoftwareProduct }) {
           <Link href={`/products/software/${product.slug}`} className="btn btn-secondary">
             Details
           </Link>
-          {product.isFree || product.freeForever ? (
+          {showDownloadLink ? (
             <a
               href={product.downloadUrl}
               className="text-sm font-semibold text-royal hover:underline"
             >
               {product.freeForever && !product.isFree ? "Download Free →" : "Download free →"}
             </a>
+          ) : null}
+          {product.comingSoon ? (
+            <Link
+              href="/contact"
+              className="text-sm font-semibold text-royal hover:underline"
+            >
+              Ask about early access →
+            </Link>
           ) : null}
           {showPricingLink ? (
             <Link

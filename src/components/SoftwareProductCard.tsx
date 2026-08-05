@@ -8,42 +8,61 @@ export function SoftwareProductCard({ product }: { product: SoftwareProduct }) {
   const fromPrice = skus.length
     ? Math.min(...skus.map((sku) => sku.priceUsd))
     : null;
+  const thumb = product.screenshots[0];
 
   return (
-    <article className="flex h-full flex-col rounded-xl border border-silver/70 bg-white p-6">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-royal">
-            {product.isFree ? "Free" : "Trial available"}
-          </p>
-          <h3 className="mt-2 text-2xl">{product.name}</h3>
+    <article className="flex h-full flex-col overflow-hidden rounded-xl border border-silver/70 bg-white">
+      {thumb ? (
+        <div className="relative aspect-[16/10] border-b border-silver/60 bg-mist">
+          <Image
+            src={thumb.src}
+            alt={thumb.alt}
+            fill
+            className="object-cover object-top"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
         </div>
-        <Image
-          src="/software/branding/logo-mark.png"
-          alt=""
-          width={40}
-          height={40}
-          className="h-10 w-10 object-contain"
-        />
-      </div>
-      <p className="mt-3 text-sm text-muted">{product.tagline}</p>
-      <p className="mt-3 flex-1 text-sm text-navy/80">{product.summary}</p>
-      <div className="mt-5 flex flex-wrap items-center gap-3">
-        <Link href={`/products/software/${product.slug}`} className="btn btn-secondary">
-          Details
-        </Link>
-        {product.isFree ? (
-          <a href={product.downloadUrl} className="text-sm font-semibold text-royal hover:underline">
-            Download free →
-          </a>
-        ) : (
-          <Link
-            href={`/products/software/pricing?sku=${product.pricingSkuIds[0] ?? ""}`}
-            className="text-sm font-semibold text-royal hover:underline"
-          >
-            {fromPrice != null ? `From ${formatUsd(fromPrice)}` : "View pricing"} →
+      ) : null}
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-royal">
+              {product.isFree ? "Free" : "Trial available"}
+            </p>
+            <h3 className="mt-2 text-2xl">{product.name}</h3>
+          </div>
+          {!thumb ? (
+            <Image
+              src="/software/branding/logo-mark.png"
+              alt=""
+              width={40}
+              height={40}
+              className="h-10 w-10 object-contain"
+            />
+          ) : null}
+        </div>
+        <p className="mt-3 text-sm text-muted">{product.tagline}</p>
+        <p className="mt-3 flex-1 text-sm text-navy/80">{product.summary}</p>
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          <Link href={`/products/software/${product.slug}`} className="btn btn-secondary">
+            Details
           </Link>
-        )}
+          {product.isFree ? (
+            <a
+              href={product.downloadUrl}
+              className="text-sm font-semibold text-royal hover:underline"
+            >
+              Download free →
+            </a>
+          ) : (
+            <Link
+              href={`/products/software/pricing?sku=${product.pricingSkuIds[0] ?? ""}`}
+              className="text-sm font-semibold text-royal hover:underline"
+            >
+              {fromPrice != null ? `From ${formatUsd(fromPrice)}` : "View pricing"} →
+            </Link>
+          )}
+        </div>
       </div>
     </article>
   );

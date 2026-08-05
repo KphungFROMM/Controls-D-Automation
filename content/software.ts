@@ -156,7 +156,12 @@ export const softwareProducts: SoftwareProduct[] = [
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectBootP-Setup-1.0.0.exe`,
     downloadLabel: "Download KonnectBootP",
-    screenshots: [],
+    screenshots: [
+      {
+        src: "/software/screenshots/bootp/network.png",
+        alt: "KonnectBootP network setup and BOOTP server controls",
+      },
+    ],
     pricingSkuIds: [],
   },
   {
@@ -180,7 +185,12 @@ export const softwareProducts: SoftwareProduct[] = [
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectModbusTools-Setup-1.0.0.exe`,
     downloadLabel: "Download trial",
-    screenshots: [],
+    screenshots: [
+      {
+        src: "/software/screenshots/modbus-tools/master.png",
+        alt: "KonnectModbusTools Modbus Master connection and register workspace",
+      },
+    ],
     pricingSkuIds: ["mbt-annual", "mbt-perpetual"],
   },
   {
@@ -204,7 +214,12 @@ export const softwareProducts: SoftwareProduct[] = [
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectNetworkScan-Setup-1.0.0.exe`,
     downloadLabel: "Download trial",
-    screenshots: [],
+    screenshots: [
+      {
+        src: "/software/screenshots/network-scan/network.png",
+        alt: "KonnectNetworkScan NIC selection and site survey setup",
+      },
+    ],
     pricingSkuIds: ["nsc-annual", "nsc-perpetual"],
   },
   {
@@ -228,7 +243,12 @@ export const softwareProducts: SoftwareProduct[] = [
     version: "1.0.0",
     downloadUrl: `${RELEASE_BASE}/KonnectPIDTuner-Setup-1.0.0.exe`,
     downloadLabel: "Download trial",
-    screenshots: [],
+    screenshots: [
+      {
+        src: "/software/screenshots/pid-tuner/connect.png",
+        alt: "KonnectPIDTuner Connect PLC and loop selection workspace",
+      },
+    ],
     pricingSkuIds: ["pid-annual", "pid-perpetual"],
   },
   {
@@ -256,27 +276,23 @@ export const softwareProducts: SoftwareProduct[] = [
     screenshots: [
       {
         src: "/software/screenshots/oee/dashboard-supervisor.png",
-        alt: "KonnectOEE supervisor dashboard",
+        alt: "KonnectOEE Line 1 supervisor dashboard with live OEE KPIs",
       },
       {
-        src: "/software/screenshots/oee/operator-filler.png",
-        alt: "KonnectOEE operator station view",
-      },
-      {
-        src: "/software/screenshots/oee/analytics.png",
-        alt: "KonnectOEE analytics and loss views",
+        src: "/software/screenshots/oee/operator-station.png",
+        alt: "KonnectOEE operator station plant overview",
       },
       {
         src: "/software/screenshots/oee/kiosk-andon.png",
         alt: "KonnectOEE andon kiosk display",
       },
       {
-        src: "/software/screenshots/oee/builder-edit.png",
-        alt: "KonnectOEE dashboard builder",
+        src: "/software/screenshots/oee/analytics.png",
+        alt: "KonnectOEE analytics and historian views",
       },
       {
-        src: "/software/screenshots/oee/plant-wall-light.png",
-        alt: "KonnectOEE plant wall board",
+        src: "/software/screenshots/oee/dashboards-hub.png",
+        alt: "KonnectOEE dashboards hub with plant boards",
       },
     ],
     pricingSkuIds: ["oee-annual", "oee-perpetual"],

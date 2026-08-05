@@ -3,6 +3,7 @@ import Link from "next/link";
 import { industries } from "@content/industries";
 import { getFeaturedProjects } from "@content/projects";
 import { getApprovedReviews, getAverageRating } from "@content/reviews";
+import { softwareSuite } from "@content/software";
 import { services } from "@content/services";
 import { CtaBand } from "@/components/CtaBand";
 import { PlatformCarousel } from "@/components/PlatformCarousel";
@@ -179,6 +180,42 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section pt-0">
+        <div className="site-wrap">
+          <Reveal>
+            <div className="overflow-hidden rounded-xl border border-silver/70 bg-white">
+              <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+                <div className="p-6 sm:p-8">
+                  <p className="eyebrow">Products</p>
+                  <h2 className="mt-3 text-3xl sm:text-4xl">{softwareSuite.name}</h2>
+                  <p className="mt-3 max-w-2xl text-muted">{softwareSuite.tagline}</p>
+                  <p className="mt-3 max-w-2xl text-sm text-navy/80">
+                    Download free and trial installers for BootP, ModbusTools, NetworkScan, PIDTuner,
+                    and on-prem OEE—then license Full seats when your plant is ready.
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Link href="/products/software" className="btn btn-primary">
+                      Explore software
+                    </Link>
+                    <Link href="/products/software/pricing" className="btn btn-secondary">
+                      View pricing
+                    </Link>
+                  </div>
+                </div>
+                <div className="border-t border-silver/60 bg-mist px-6 py-6 lg:border-t-0 lg:border-l">
+                  <ul className="space-y-3 text-sm text-navy">
+                    <li className="border-l-2 border-royal/50 pl-3">KonnectBootP — free commissioning</li>
+                    <li className="border-l-2 border-royal/50 pl-3">ModbusTools & NetworkScan — OT bench tools</li>
+                    <li className="border-l-2 border-royal/50 pl-3">PIDTuner — Logix loop tuning</li>
+                    <li className="border-l-2 border-royal/50 pl-3">KonnectOEE — on-prem plant visibility</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

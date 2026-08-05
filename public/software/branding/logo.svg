@@ -1,0 +1,21 @@
+<!-- Konnect mark: Frame (#10) + Chevron K (#1)
+     Frame #7A8494 | K top #9090A0 | K bottom #2A8F8A -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <!-- Frame: four L-brackets with mid-side gaps + chamfered corners -->
+  <path fill="#7A8494" d="M50 32 H112 V54 H54 V112 H32 V50 Z"/>
+  <path fill="#7A8494" d="M144 32 H206 L224 50 V112 H202 V54 H144 Z"/>
+  <path fill="#7A8494" d="M32 144 H54 V202 H112 V224 H50 L32 206 Z"/>
+  <path fill="#7A8494" d="M202 144 H224 V206 L206 224 H144 V202 H202 Z"/>
+  <!-- Bolt-hole cutouts -->
+  <circle cx="48" cy="48" r="7" fill="#FFFFFF"/>
+  <circle cx="208" cy="48" r="7" fill="#FFFFFF"/>
+  <circle cx="48" cy="208" r="7" fill="#FFFFFF"/>
+  <circle cx="208" cy="208" r="7" fill="#FFFFFF"/>
+
+  <!-- Chevron K — top slate -->
+  <rect x="78" y="72" width="30" height="54" fill="#9090A0"/>
+  <path fill="#9090A0" d="M116 72 H178 V100 L144 126 H116 Z"/>
+  <!-- Chevron K — bottom teal -->
+  <rect x="78" y="130" width="30" height="54" fill="#2A8F8A"/>
+  <path fill="#2A8F8A" d="M116 130 H144 L178 156 V184 H116 Z"/>
+</svg>

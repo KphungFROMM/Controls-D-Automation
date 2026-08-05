@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { industries } from "@content/industries";
 import { projects } from "@content/projects";
 import { services } from "@content/services";
+import { softwareProducts } from "@content/software";
 
 const base = "https://controls-d-automation.vercel.app";
 
@@ -9,6 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/services",
+    "/products",
+    "/products/software",
+    "/products/software/pricing",
     "/platforms",
     "/industries",
     "/partners",
@@ -38,5 +42,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(project.date),
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...industryRoutes, ...projectRoutes];
+  const softwareRoutes = softwareProducts.map((product) => ({
+    url: `${base}/products/software/${product.slug}`,
+    lastModified: new Date(),
+  }));
+
+  return [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...industryRoutes,
+    ...projectRoutes,
+    ...softwareRoutes,
+  ];
 }

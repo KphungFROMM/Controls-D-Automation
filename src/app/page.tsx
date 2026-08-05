@@ -186,10 +186,19 @@ export default function HomePage() {
       <section className="section pt-0">
         <div className="site-wrap">
           <Reveal>
-            <div className="overflow-hidden rounded-xl border border-silver/70 bg-white">
+            <div className="overflow-hidden rounded-xl border border-silver/70 bg-white shadow-[0_14px_40px_rgba(11,31,58,0.06)]">
               <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
                 <div className="p-6 sm:p-8">
-                  <p className="eyebrow">Products</p>
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src="/software/branding/logo-mark.png"
+                      alt=""
+                      width={36}
+                      height={36}
+                      className="h-9 w-9 object-contain"
+                    />
+                    <p className="eyebrow mt-0">Products</p>
+                  </div>
                   <h2 className="mt-3 text-3xl sm:text-4xl">{softwareSuite.name}</h2>
                   <p className="mt-3 max-w-2xl text-muted">{softwareSuite.tagline}</p>
                   <p className="mt-3 max-w-2xl text-sm text-navy/80">
@@ -206,14 +215,37 @@ export default function HomePage() {
                     </Link>
                   </div>
                 </div>
-                <div className="border-t border-silver/60 bg-mist px-6 py-6 lg:border-t-0 lg:border-l">
-                  <ul className="space-y-3 text-sm text-navy">
-                    <li className="border-l-2 border-royal/50 pl-3">KonnectBootP — free commissioning</li>
-                    <li className="border-l-2 border-royal/50 pl-3">NetworkScan — Free scan + Full reports</li>
-                    <li className="border-l-2 border-royal/50 pl-3">ModbusTools & PIDTuner — OT bench tools</li>
-                    <li className="border-l-2 border-royal/50 pl-3">KonnectOEE — on-prem plant visibility</li>
-                    <li className="border-l-2 border-royal/50 pl-3">
-                      KonnectEdge & Reports — <span className="font-semibold text-royal">coming soon</span>
+                <div className="relative flex min-h-64 flex-col justify-between overflow-hidden bg-gradient-to-br from-navy via-[#14325c] to-royal px-6 py-8 text-white lg:min-h-full">
+                  <div className="pointer-events-none absolute inset-0 circuit-grid opacity-25" />
+                  <div className="relative">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-silver">
+                      In the suite
+                    </p>
+                    <p className="mt-3 max-w-xs text-xl font-semibold leading-snug text-white sm:text-2xl">
+                      Commissioning tools and on-prem plant software
+                    </p>
+                  </div>
+                  <ul className="relative mt-8 grid grid-cols-2 gap-2 text-sm">
+                    <li className="rounded-md border border-white/15 bg-white/5 px-3 py-2 font-medium">
+                      BootP
+                    </li>
+                    <li className="rounded-md border border-white/15 bg-white/5 px-3 py-2 font-medium">
+                      NetworkScan
+                    </li>
+                    <li className="rounded-md border border-white/15 bg-white/5 px-3 py-2 font-medium">
+                      ModbusTools
+                    </li>
+                    <li className="rounded-md border border-white/15 bg-white/5 px-3 py-2 font-medium">
+                      PIDTuner
+                    </li>
+                    <li className="rounded-md border border-white/15 bg-white/5 px-3 py-2 font-medium">
+                      OEE
+                    </li>
+                    <li className="rounded-md border border-white/15 bg-white/5 px-3 py-2 font-medium">
+                      Edge{" "}
+                      <span className="block text-[10px] uppercase tracking-[0.12em] text-silver/80">
+                        Coming soon
+                      </span>
                     </li>
                   </ul>
                 </div>

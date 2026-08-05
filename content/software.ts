@@ -13,6 +13,11 @@ export type PricingSku = {
   fulfills: string[];
 };
 
+export type SoftwareWorkflowStep = {
+  step: string;
+  body: string;
+};
+
 export type SoftwareProduct = {
   slug: string;
   name: string;
@@ -20,6 +25,8 @@ export type SoftwareProduct = {
   tagline: string;
   summary: string;
   features: string[];
+  plantJobs: string[];
+  workflow: SoftwareWorkflowStep[];
   trialNotes: string;
   /** Fully free product with no paid SKUs (e.g. BootP). */
   isFree: boolean;
@@ -155,6 +162,30 @@ export const softwareProducts: SoftwareProduct[] = [
       "Dark/light UI with guided commissioning steps",
       "Free for commercial use—no license key required",
     ],
+    plantJobs: [
+      "Bring new CIP devices online at first power-up",
+      "Recover factory-default modules after swap-out",
+      "Document addressing before turnover with CSV export",
+      "Commission without FactoryTalk or RSLinx on the laptop",
+    ],
+    workflow: [
+      {
+        step: "Pick the NIC",
+        body: "Select the OT adapter, start the BOOTP/DHCP server, and watch List Identity responses land.",
+      },
+      {
+        step: "Assign addressing",
+        body: "Set IP, subnet, gateway, DNS, and hostname for each discovered device.",
+      },
+      {
+        step: "Verify, then lock",
+        body: "Confirm reachability before Set Static via CIP so you do not brick a module mid-startup.",
+      },
+      {
+        step: "Save the profile",
+        body: "Keep a .btpprofile and event log for the next panel or FAT.",
+      },
+    ],
     trialNotes: "Full commercial access at no cost. Run as Administrator for UDP port 67.",
     isFree: true,
     freeForever: true,
@@ -186,6 +217,30 @@ export const softwareProducts: SoftwareProduct[] = [
       "Optional CLI (mbt) for scripted checks",
       "14-day trial → Full license (node-locked, offline)",
     ],
+    plantJobs: [
+      "Prove Modbus maps before PLC code is ready",
+      "Simulate a slave when the field device is offline",
+      "Capture frame-level logs for vendor support tickets",
+      "Trend registers during FAT and first-article runs",
+    ],
+    workflow: [
+      {
+        step: "Connect",
+        body: "Open a TCP or RTU master session—or spin up the built-in slave simulator.",
+      },
+      {
+        step: "Map registers",
+        body: "Read and write coils and holding registers with live values on the bench.",
+      },
+      {
+        step: "Trend and log",
+        body: "Watch ScottPlot trends and export the transaction log when something looks wrong.",
+      },
+      {
+        step: "Save the profile",
+        body: "Reuse .mbtprofile files across jobs, or script checks with the optional CLI.",
+      },
+    ],
     trialNotes: "14-day trial included. Activate Full under Settings with a Machine ID license key.",
     isFree: false,
     freeForever: false,
@@ -216,6 +271,30 @@ export const softwareProducts: SoftwareProduct[] = [
       "PLC / Drive / Switch / HMI result badges",
       "Full unlocks Map, multi-site workspace, Report preview, and PDF/CSV/HTML export",
       "Offline Machine ID activation with KONNECT-NSC- keys",
+    ],
+    plantJobs: [
+      "Walk a new OT subnet before you touch PLC code",
+      "Identify PLCs, drives, switches, and HMIs by brand",
+      "Build multi-site survey workspaces for service contracts",
+      "Deliver branded PDF/CSV/HTML reports to the customer",
+    ],
+    workflow: [
+      {
+        step: "Choose the NIC",
+        body: "Point Free at the OT adapter and scan a /24 with ARP/ICMP plus industrial probes.",
+      },
+      {
+        step: "Review results",
+        body: "Sort hosts by PLC, drive, switch, or HMI badges with CIP List Identity detail.",
+      },
+      {
+        step: "Map the site",
+        body: "With Full, organize Sites, open the Map, and preview the survey report.",
+      },
+      {
+        step: "Export deliverables",
+        body: "Ship PDF, CSV, or HTML without watermarks once Full is activated offline.",
+      },
     ],
     trialNotes:
       "Free forever includes unlimited subnet scan and results. Map, Sites, Report, and exports require a Full license—activate under Settings with your Machine ID key. No trial clock and no PDF watermarks.",
@@ -249,6 +328,30 @@ export const softwareProducts: SoftwareProduct[] = [
       "Simulation mode for safe practice without a PLC",
       "14-day trial → Full license (Advanced/MPC features gated on Full)",
     ],
+    plantJobs: [
+      "Tune Logix PID/PIDE/PPID loops without RSLinx",
+      "Practice safely in simulation before touching a live loop",
+      "Document valve health and loop KPIs for the process team",
+      "Export PDF session reports after a tuning campaign",
+    ],
+    workflow: [
+      {
+        step: "Connect the PLC",
+        body: "Reach the Logix controller over EtherNet/IP and pick the loop tags.",
+      },
+      {
+        step: "Choose a method",
+        body: "Run Smart Tune, Pulse Autotune, or the Manual Tools expert wizard.",
+      },
+      {
+        step: "Apply and verify",
+        body: "Review IMC/SIMC/ZN suggestions, valve diagnostics, and loop health.",
+      },
+      {
+        step: "Report the session",
+        body: "Save recipes and export a PDF so the next shift knows what changed.",
+      },
+    ],
     trialNotes: "14-day trial included. Full license unlocks advanced control and MPC advisory features.",
     isFree: false,
     freeForever: false,
@@ -279,6 +382,30 @@ export const softwareProducts: SoftwareProduct[] = [
       "WYSIWYG dashboards, andon boards, and kiosk displays",
       "Postgres / Timescale historian with shift reporting",
       "Windows Service install; browser UI on your plant network",
+    ],
+    plantJobs: [
+      "Give supervisors live APQ without a cloud subscription",
+      "Capture downtime reasons operators will actually use",
+      "Drive andon and kiosk boards on the plant floor",
+      "Keep historian data on your network for shift reports",
+    ],
+    workflow: [
+      {
+        step: "Install on-prem",
+        body: "Run the Windows Service installer with your own Postgres/Timescale database password.",
+      },
+      {
+        step: "Model the plant",
+        body: "Build plant → line hierarchy, roles, and PLC or Modbus/OPC UA connections.",
+      },
+      {
+        step: "Run the shift",
+        body: "Operators log stops; supervisors watch live OEE, dashboards, and andon boards.",
+      },
+      {
+        step: "Review history",
+        body: "Use analytics and historian views to close the loop after the shift.",
+      },
     ],
     trialNotes:
       "14-day trial with limited plant/line capacity. Installer requires a unique DB password (min 8 characters).",
@@ -328,6 +455,30 @@ export const softwareProducts: SoftwareProduct[] = [
       "Offline design without DriverHost; live preview when connected",
       "Licensed native/web runtime on the plant PC (public release pending)",
     ],
+    plantJobs: [
+      "Author protocol gateways and tag models on an engineer laptop",
+      "Design optional HMI screens when the line needs a local UI",
+      "Ship headless edge packages with no screens at all",
+      "Export runtime zips for plant PCs without a design server",
+    ],
+    workflow: [
+      {
+        step: "Create a project",
+        body: "When available, open the free Designer and start a native, web, or headless target.",
+      },
+      {
+        step: "Wire drivers and tags",
+        body: "Add connectivity, system tags, and logic—screens stay optional.",
+      },
+      {
+        step: "Design if needed",
+        body: "Lay out HMI controls on the canvas, or keep the project headless.",
+      },
+      {
+        step: "Export runtime",
+        body: "Package a `.cedge-runtime` for the plant PC and activate the licensed runtime.",
+      },
+    ],
     trialNotes:
       "Coming soon for public download. Designer will ship free; plant runtime licenses will activate offline with KONNECT-EDG- keys.",
     isFree: false,
@@ -363,6 +514,30 @@ export const softwareProducts: SoftwareProduct[] = [
       "WYSIWYG report designer with industrial template starters",
       "Compliance-oriented audit and batch report patterns",
       "Browser UI with role-based access on your network",
+    ],
+    plantJobs: [
+      "Log PLC tags into an on-prem historian for shift PDFs",
+      "Generate batch, HACCP, DMR, and alarm KPI style reports",
+      "Schedule email/PDF delivery without a cloud SaaS",
+      "Keep compliance templates on your plant network",
+    ],
+    workflow: [
+      {
+        step: "Connect sources",
+        body: "When available, add Rockwell, OPC UA, or Modbus endpoints and browse tags.",
+      },
+      {
+        step: "Log to historian",
+        body: "Create logger groups, set intervals, and verify samples in Trends.",
+      },
+      {
+        step: "Design the report",
+        body: "Bind templates to historian queries—not live PLC reads at generate time.",
+      },
+      {
+        step: "Schedule delivery",
+        body: "Run on-demand from the portal or cron PDFs to email/FTP on your network.",
+      },
     ],
     trialNotes:
       "Coming soon for public download and licensing. Contact us if you want early access for a pilot plant.",

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { softwareProducts, softwareSuite } from "@content/software";
+import {
+  getAvailableSoftwareProducts,
+  softwareProducts,
+  softwareSuite,
+} from "@content/software";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
@@ -13,6 +17,8 @@ export const metadata: Metadata = {
 };
 
 export default function ProductsPage() {
+  const previewProducts = getAvailableSoftwareProducts().slice(0, 4);
+
   return (
     <>
       <PageHero
@@ -21,10 +27,10 @@ export default function ProductsPage() {
         lede="Beyond project services, Controls D Automation develops the Konnect Software Suite—Windows tools and on-prem plant software you can download, trial, and license for your facility."
       />
 
-      <section className="section">
+      <section className="section pt-0">
         <div className="site-wrap">
           <Reveal>
-            <article className="overflow-hidden rounded-xl border border-silver/70 bg-white">
+            <article className="overflow-hidden rounded-xl border border-silver/70 bg-white shadow-[0_14px_40px_rgba(11,31,58,0.06)]">
               <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
                 <div className="p-6 sm:p-8 lg:p-10">
                   <div className="flex items-center gap-3">
@@ -98,6 +104,42 @@ export default function ProductsPage() {
               </div>
             </article>
           </Reveal>
+
+          <div className="mt-8">
+            <Reveal>
+              <p className="eyebrow">In the suite</p>
+              <h2 className="mt-3 text-2xl sm:text-3xl">Product UI at a glance</h2>
+            </Reveal>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {previewProducts.map((product, index) => {
+                const shot = product.screenshots[0];
+                return (
+                  <Reveal key={product.slug} delay={index * 50}>
+                    <Link
+                      href={`/products/software/${product.slug}`}
+                      className="group block overflow-hidden rounded-xl border border-silver/70 bg-white shadow-sm transition hover:border-royal/40"
+                    >
+                      <div className="relative aspect-[16/10] bg-mist">
+                        {shot ? (
+                          <Image
+                            src={shot.src}
+                            alt={shot.alt}
+                            fill
+                            className="object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+                            sizes="(max-width: 1024px) 50vw, 25vw"
+                          />
+                        ) : null}
+                      </div>
+                      <div className="px-3 py-3">
+                        <p className="text-sm font-semibold text-navy">{product.shortName}</p>
+                        <p className="mt-0.5 line-clamp-1 text-xs text-muted">{product.tagline}</p>
+                      </div>
+                    </Link>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 

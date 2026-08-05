@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import {
@@ -58,39 +59,58 @@ export default function SoftwarePricingPage() {
 
       <section className="section pt-0">
         <div className="site-wrap space-y-4">
-          {freeProducts.map((product, index) => (
-            <Reveal key={product.slug} delay={index * 50}>
-              <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-success/30 bg-white px-6 py-5">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-success">
-                    {product.isFree ? "Free forever" : "Free forever · Full upgrade available"}
-                  </p>
-                  <h2 className="mt-2 text-2xl">{product.name}</h2>
-                  <p className="mt-1 max-w-2xl text-sm text-muted">{product.trialNotes}</p>
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  <a href={product.downloadUrl} className="btn btn-primary">
-                    {product.downloadLabel}
-                  </a>
-                  <Link href={`/products/software/${product.slug}`} className="btn btn-secondary">
-                    Details
-                  </Link>
-                  {product.pricingSkuIds.length > 0 ? (
+          {freeProducts.map((product, index) => {
+            const shot = product.screenshots[0];
+            return (
+              <Reveal key={product.slug} delay={index * 50}>
+                <div className="metallic-panel flex flex-wrap items-center justify-between gap-5 rounded-xl px-5 py-5 shadow-[0_10px_30px_rgba(11,31,58,0.05)] sm:px-6">
+                  <div className="flex min-w-0 flex-1 items-start gap-4">
+                    {shot ? (
+                      <div className="relative hidden h-20 w-32 shrink-0 overflow-hidden rounded-lg border border-silver/60 bg-mist sm:block">
+                        <Image
+                          src={shot.src}
+                          alt=""
+                          fill
+                          className="object-cover object-top"
+                          sizes="128px"
+                        />
+                      </div>
+                    ) : null}
+                    <div className="min-w-0">
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-success">
+                        {product.isFree ? "Free forever" : "Free forever · Full upgrade available"}
+                      </p>
+                      <h2 className="mt-2 text-2xl">{product.name}</h2>
+                      <p className="mt-1 max-w-2xl text-sm text-muted">{product.trialNotes}</p>
+                      {product.pricingSkuIds.length > 0 ? (
+                        <Link
+                          href={`/products/software/pricing?sku=${product.pricingSkuIds[0]}#license-request`}
+                          className="mt-2 inline-flex text-sm font-semibold text-royal hover:underline"
+                        >
+                          Upgrade to Full →
+                        </Link>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <a href={product.downloadUrl} className="btn btn-primary">
+                      {product.downloadLabel}
+                    </a>
                     <Link
-                      href={`/products/software/pricing?sku=${product.pricingSkuIds[0]}#license-request`}
+                      href={`/products/software/${product.slug}`}
                       className="btn btn-secondary"
                     >
-                      Upgrade to Full
+                      Details
                     </Link>
-                  ) : null}
+                  </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
-      <section className="section pt-0">
+      <section className="section atmosphere">
         <div className="site-wrap">
           <Reveal>
             <p className="eyebrow">Full licenses</p>
@@ -104,21 +124,35 @@ export default function SoftwarePricingPage() {
               const perpetual = product.pricingSkuIds
                 .map((id) => getPricingSku(id))
                 .find((sku) => sku?.term === "perpetual");
+              const shot = product.screenshots[0];
 
               return (
                 <Reveal key={product.slug} delay={index * 60}>
-                  <article className="h-full rounded-xl border border-silver/70 bg-white p-6">
-                    <div className="flex flex-wrap items-start justify-between gap-3">
-                      <div>
-                        <h3 className="text-2xl">{product.name}</h3>
+                  <article className="metallic-panel h-full rounded-xl p-6 shadow-[0_10px_30px_rgba(11,31,58,0.06)]">
+                    <div className="flex flex-wrap items-start gap-4">
+                      {shot ? (
+                        <div className="relative h-16 w-28 shrink-0 overflow-hidden rounded-lg border border-silver/60 bg-mist">
+                          <Image
+                            src={shot.src}
+                            alt=""
+                            fill
+                            className="object-cover object-top"
+                            sizes="112px"
+                          />
+                        </div>
+                      ) : null}
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-start justify-between gap-3">
+                          <h3 className="text-2xl">{product.name}</h3>
+                          <Link
+                            href={`/products/software/${product.slug}`}
+                            className="text-sm font-semibold text-royal hover:underline"
+                          >
+                            Details →
+                          </Link>
+                        </div>
                         <p className="mt-2 text-sm text-muted">{product.trialNotes}</p>
                       </div>
-                      <Link
-                        href={`/products/software/${product.slug}`}
-                        className="text-sm font-semibold text-royal hover:underline"
-                      >
-                        Details →
-                      </Link>
                     </div>
                     <div className="mt-6 grid gap-3 sm:grid-cols-2">
                       {annual ? (
@@ -231,7 +265,7 @@ export default function SoftwarePricingPage() {
         </div>
       </section>
 
-      <section className="section pt-0">
+      <section className="section atmosphere">
         <div className="site-wrap">
           <Reveal>
             <p className="eyebrow">How licensing works</p>

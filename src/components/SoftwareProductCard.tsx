@@ -16,9 +16,9 @@ export function SoftwareProductCard({ product }: { product: SoftwareProduct }) {
     (product.isFree || product.freeForever);
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-xl border border-silver/70 bg-white">
+    <article className="metallic-panel flex h-full flex-col overflow-hidden rounded-xl shadow-[0_10px_30px_rgba(11,31,58,0.06)]">
       {thumb ? (
-        <div className="relative aspect-[16/10] border-b border-silver/60 bg-mist">
+        <div className="relative aspect-[16/10] border-b border-silver/50 bg-mist">
           <Image
             src={thumb.src}
             alt={thumb.alt}
@@ -32,25 +32,29 @@ export function SoftwareProductCard({ product }: { product: SoftwareProduct }) {
             </span>
           ) : null}
         </div>
-      ) : null}
-      <div className="flex flex-1 flex-col p-6">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-royal">
-              {getAccessBadge(product)}
-            </p>
-            <h3 className="mt-2 text-2xl">{product.name}</h3>
-          </div>
-          {!thumb ? (
-            <Image
-              src="/software/branding/logo-mark.png"
-              alt=""
-              width={40}
-              height={40}
-              className="h-10 w-10 object-contain"
-            />
+      ) : (
+        <div className="relative flex aspect-[16/10] items-end overflow-hidden bg-gradient-to-br from-navy via-[#14325c] to-royal px-5 py-5">
+          <div className="pointer-events-none absolute inset-0 circuit-grid opacity-25" />
+          <Image
+            src="/software/branding/logo-mark.png"
+            alt=""
+            width={40}
+            height={40}
+            className="absolute right-4 top-4 h-10 w-10 object-contain opacity-90"
+          />
+          {product.comingSoon ? (
+            <span className="absolute left-3 top-3 rounded-md bg-white/15 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
+              Coming soon
+            </span>
           ) : null}
+          <p className="relative text-lg font-semibold text-white">{product.shortName}</p>
         </div>
+      )}
+      <div className="flex flex-1 flex-col p-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-royal">
+          {getAccessBadge(product)}
+        </p>
+        <h3 className="mt-2 text-2xl">{product.name}</h3>
         <p className="mt-3 text-sm text-muted">{product.tagline}</p>
         <p className="mt-3 flex-1 text-sm text-navy/80">{product.summary}</p>
         <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -66,10 +70,7 @@ export function SoftwareProductCard({ product }: { product: SoftwareProduct }) {
             </a>
           ) : null}
           {product.comingSoon ? (
-            <Link
-              href="/contact"
-              className="text-sm font-semibold text-royal hover:underline"
-            >
+            <Link href="/contact" className="text-sm font-semibold text-royal hover:underline">
               Ask about early access →
             </Link>
           ) : null}

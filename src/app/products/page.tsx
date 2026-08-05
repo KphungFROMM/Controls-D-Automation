@@ -57,14 +57,33 @@ export default function ProductsPage() {
                     </Link>
                   </div>
                 </div>
-                <div className="relative min-h-64 bg-mist lg:min-h-full">
-                  <Image
-                    src="/software/screenshots/oee/dashboard-supervisor.png"
-                    alt="KonnectOEE supervisor dashboard"
-                    fill
-                    className="object-cover object-left-top"
-                    sizes="(max-width: 1024px) 100vw, 45vw"
-                  />
+                <div className="relative flex min-h-72 flex-col justify-between overflow-hidden bg-gradient-to-br from-navy via-[#14325c] to-royal px-8 py-10 text-white lg:min-h-full">
+                  <div className="pointer-events-none absolute inset-0 circuit-grid opacity-25" />
+                  <div className="relative">
+                    <Image
+                      src="/software/branding/logo-mark.png"
+                      alt=""
+                      width={88}
+                      height={88}
+                      className="h-16 w-16 object-contain sm:h-20 sm:w-20"
+                    />
+                    <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-silver">
+                      Konnect Software Suite
+                    </p>
+                    <p className="mt-3 max-w-xs text-2xl font-semibold leading-snug text-white sm:text-3xl">
+                      Commissioning tools and on-prem plant software
+                    </p>
+                  </div>
+                  <ul className="relative mt-10 grid grid-cols-2 gap-2 text-sm text-silver">
+                    {softwareProducts.map((product) => (
+                      <li
+                        key={product.slug}
+                        className="rounded-md border border-white/15 bg-white/5 px-3 py-2 font-medium text-white"
+                      >
+                        {product.shortName}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </article>

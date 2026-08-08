@@ -7,6 +7,7 @@ import {
   getSoftwareProduct,
   softwareSuite,
 } from "@content/software";
+import { konnectSymbols } from "@content/symbols";
 import { CtaBand } from "@/components/CtaBand";
 import { Reveal } from "@/components/Reveal";
 import { SoftwareProductCard } from "@/components/SoftwareProductCard";
@@ -144,6 +145,45 @@ export default function SoftwareSuitePage() {
           </div>
         </section>
       ) : null}
+
+      <section className="section atmosphere pt-0">
+        <div className="site-wrap">
+          <Reveal>
+            <article className="overflow-hidden rounded-xl border border-silver/70 bg-white shadow-[0_10px_30px_rgba(11,31,58,0.06)]">
+              <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+                <div className="relative min-h-52 bg-mist lg:min-h-full">
+                  <Image
+                    src={konnectSymbols.screenshot.src}
+                    alt={konnectSymbols.screenshot.alt}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
+                </div>
+                <div className="p-6 sm:p-8">
+                  <p className="eyebrow">Also from Konnect</p>
+                  <h2 className="mt-3 text-3xl">{konnectSymbols.name}</h2>
+                  <p className="mt-3 text-muted">{konnectSymbols.tagline}</p>
+                  <p className="mt-3 text-sm text-navy/80">{konnectSymbols.summary}</p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <a
+                      href={konnectSymbols.url}
+                      className="btn btn-primary"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Visit KonnectSymbols
+                    </a>
+                    <Link href="/products/symbols" className="btn btn-secondary">
+                      Product details
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </Reveal>
+        </div>
+      </section>
 
       <CtaBand
         title="Ready to license a Full seat?"

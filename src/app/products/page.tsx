@@ -6,6 +6,7 @@ import {
   softwareProducts,
   softwareSuite,
 } from "@content/software";
+import { konnectSymbols } from "@content/symbols";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
@@ -13,7 +14,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Products",
-  description: `${softwareSuite.name} and industrial software products from ${site.name}.`,
+  description: `${softwareSuite.name}, ${konnectSymbols.name}, and industrial software products from ${site.name}.`,
 };
 
 export default function ProductsPage() {
@@ -24,11 +25,63 @@ export default function ProductsPage() {
       <PageHero
         eyebrow="Products"
         title="Software built for industrial controls teams"
-        lede="Beyond project services, Controls D Automation develops the Konnect Software Suite—Windows tools and on-prem plant software you can download, trial, and license for your facility."
+        lede="Beyond project services, Controls D Automation develops the Konnect line—HMI symbols, Windows commissioning tools, and on-prem plant software your facility can download, trial, and keep."
       />
 
       <section className="section pt-0">
-        <div className="site-wrap">
+        <div className="site-wrap space-y-8">
+          <Reveal>
+            <article className="overflow-hidden rounded-xl border border-silver/70 bg-white shadow-[0_14px_40px_rgba(11,31,58,0.06)]">
+              <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
+                <div className="p-6 sm:p-8 lg:p-10">
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src="/software/branding/logo-mark.png"
+                      alt=""
+                      width={36}
+                      height={36}
+                      className="h-9 w-9 object-contain"
+                    />
+                    <p className="eyebrow mt-0">Featured product</p>
+                  </div>
+                  <h2 className="mt-4 text-3xl sm:text-4xl">{konnectSymbols.name}</h2>
+                  <p className="mt-4 text-muted">{konnectSymbols.tagline}</p>
+                  <p className="mt-3 text-sm text-navy/80">{konnectSymbols.summary}</p>
+                  <ul className="mt-6 space-y-2 text-sm text-navy">
+                    {konnectSymbols.highlights.slice(0, 3).map((item) => (
+                      <li key={item} className="border-l-2 border-royal/50 pl-3">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <a
+                      href={konnectSymbols.url}
+                      className="btn btn-primary"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Visit KonnectSymbols
+                    </a>
+                    <Link href="/products/symbols" className="btn btn-secondary">
+                      Product details
+                    </Link>
+                  </div>
+                </div>
+                <div className="relative min-h-64 bg-mist lg:min-h-full">
+                  <Image
+                    src={konnectSymbols.screenshot.src}
+                    alt={konnectSymbols.screenshot.alt}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    priority
+                  />
+                </div>
+              </div>
+            </article>
+          </Reveal>
+
           <Reveal>
             <article className="overflow-hidden rounded-xl border border-silver/70 bg-white shadow-[0_14px_40px_rgba(11,31,58,0.06)]">
               <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
@@ -42,7 +95,7 @@ export default function ProductsPage() {
                       className="h-9 w-auto"
                     />
                   </div>
-                  <p className="eyebrow mt-6">Featured product line</p>
+                  <p className="eyebrow mt-6">Desktop & on-prem suite</p>
                   <h2 className="mt-3 text-3xl sm:text-4xl">{softwareSuite.name}</h2>
                   <p className="mt-4 text-muted">{softwareSuite.tagline}</p>
                   <p className="mt-3 text-sm text-navy/80">{softwareSuite.description}</p>
@@ -105,7 +158,7 @@ export default function ProductsPage() {
             </article>
           </Reveal>
 
-          <div className="mt-8">
+          <div>
             <Reveal>
               <p className="eyebrow">In the suite</p>
               <h2 className="mt-3 text-2xl sm:text-3xl">Product UI at a glance</h2>

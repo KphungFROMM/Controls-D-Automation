@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/services",
     "/products",
+    "/products/symbols",
     "/products/software",
     "/products/software/pricing",
     "/platforms",

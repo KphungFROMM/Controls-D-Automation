@@ -4,6 +4,7 @@ import { industries } from "@content/industries";
 import { getFeaturedProjects } from "@content/projects";
 import { getApprovedReviews, getAverageRating } from "@content/reviews";
 import { softwareSuite } from "@content/software";
+import { konnectSymbols } from "@content/symbols";
 import { services } from "@content/services";
 import { CtaBand } from "@/components/CtaBand";
 import { PlatformCarousel } from "@/components/PlatformCarousel";
@@ -184,10 +185,10 @@ export default function HomePage() {
       </section>
 
       <section className="section pt-0">
-        <div className="site-wrap">
+        <div className="site-wrap space-y-5">
           <Reveal>
             <div className="overflow-hidden rounded-xl border border-silver/70 bg-white shadow-[0_14px_40px_rgba(11,31,58,0.06)]">
-              <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+              <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
                 <div className="p-6 sm:p-8">
                   <div className="flex items-center gap-3">
                     <Image
@@ -199,6 +200,41 @@ export default function HomePage() {
                     />
                     <p className="eyebrow mt-0">Products</p>
                   </div>
+                  <h2 className="mt-3 text-3xl sm:text-4xl">{konnectSymbols.name}</h2>
+                  <p className="mt-3 max-w-2xl text-muted">{konnectSymbols.tagline}</p>
+                  <p className="mt-3 max-w-2xl text-sm text-navy/80">{konnectSymbols.summary}</p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <a
+                      href={konnectSymbols.url}
+                      className="btn btn-primary"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Visit KonnectSymbols
+                    </a>
+                    <Link href="/products/symbols" className="btn btn-secondary">
+                      Learn more
+                    </Link>
+                  </div>
+                </div>
+                <div className="relative min-h-56 bg-mist lg:min-h-full">
+                  <Image
+                    src={konnectSymbols.screenshot.src}
+                    alt={konnectSymbols.screenshot.alt}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                  />
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={60}>
+            <div className="overflow-hidden rounded-xl border border-silver/70 bg-white shadow-[0_14px_40px_rgba(11,31,58,0.06)]">
+              <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+                <div className="p-6 sm:p-8">
+                  <p className="eyebrow">Also from Konnect</p>
                   <h2 className="mt-3 text-3xl sm:text-4xl">{softwareSuite.name}</h2>
                   <p className="mt-3 max-w-2xl text-muted">{softwareSuite.tagline}</p>
                   <p className="mt-3 max-w-2xl text-sm text-navy/80">
